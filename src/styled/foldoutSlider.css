@@ -1,0 +1,175 @@
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="number-slide"],
+[class*=" number-slide"] {
+  /* background: grey; */
+  display: flex;
+  position: relative;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* font-size: 50px; */
+
+  /* font-weight: 500; */
+  height: 95%;
+  max-height: 95vh;
+}
+
+.number-slide1 {
+  /* position: relative; */
+  background: white;
+  /* display: flex; */
+  /* flex-basis: 50%; */
+  /* justify-content: space-around; */
+}
+
+.number-slide2 {
+  background: black;
+}
+
+.number-slide3 {
+  background: white;
+}
+
+.container-left {
+  width: 50%;
+}
+
+.container-right {
+  position: relative;
+  width: 50%;
+  /* background-color: aqua; */
+}
+
+.main_1 {
+  /* position: relative; */
+  /* width: 100%; */
+}
+
+.main_2 {
+  /* position: absolute; */
+  left: 50px;
+}
+
+.main_3 {
+  /* position: relative; */
+  /* width: 50%; */
+}
+
+.text_container_1 {
+  position: absolute;
+  top: 200px;
+  left: -200px;
+  color: #222222;
+}
+
+.text_container_2 {
+  position: absolute;
+  top: 130px;
+  left: -200px;
+  color: white;
+}
+
+.text_container_3 {
+  position: absolute;
+  top: 200px;
+  left: 50px;
+  color: #222222;
+}
+
+.subTitle {
+  font-size: 20px;
+  font-family: "Raleway", sans-serif;
+  margin-bottom: 50px;
+}
+
+.subTitle span {
+  font-weight: 700;
+}
+
+.title {
+  font-size: 100px;
+  font-weight: 700;
+  font-family: "Raleway", sans-serif;
+  line-height: 120px;
+}
+
+.goToShop {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  font-family: "Raleway", sans-serif;
+  margin-top: 50px;
+  position: relative;
+}
+
+.goToShop::after {
+  content: "";
+  background-color: black;
+  width: 3px;
+  height: 44px;
+  top: 0;
+  right: -5px;
+  position: absolute;
+}
+
+.navigation-wrapper {
+  position: relative;
+  /* background-color: aquamarine; */
+}
+
+.dots {
+  position: absolute;
+  bottom: 20px;
+  right: 20%;
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+}
+
+.dot {
+  border: none;
+  width: 10px;
+  height: 10px;
+  background: #c5c5c5;
+  border-radius: 50%;
+  margin: 0 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.dot:focus {
+  outline: none;
+}
+
+.dot.active {
+  background: #000;
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  fill: #c5c5c5;
+  cursor: pointer;
+}
+
+.arrow--left {
+  left: 30px;
+}
+
+.arrow--right {
+  left: auto;
+  right: 5px;
+}
+
+.arrow--disabled {
+  fill: rgba(255, 255, 255, 0.5);
+}
