@@ -64,14 +64,36 @@ body {
   position: absolute;
   top: 200px;
   left: -200px;
+}
+
+.text_container_1 p {
   color: #222222;
+}
+
+.text_container_1 p:nth-child(2) {
+  margin-bottom: 70px;
+}
+
+.text_container_2 p {
+  color: white;
+}
+
+.text_container_2 p:nth-child(2) {
+  margin-bottom: 70px;
+}
+
+.text_container_3 p {
+  color: #222222;
+}
+
+.text_container_3 p:nth-child(2) {
+  margin-bottom: 70px;
 }
 
 .text_container_2 {
   position: absolute;
   top: 130px;
   left: -200px;
-  color: white;
 }
 
 .text_container_3 {

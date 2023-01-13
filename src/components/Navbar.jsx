@@ -34,7 +34,9 @@ export default function Navbar() {
       }
     >
       <section className='flex justify-between items-center h-14'>
-        <p className='text-2xl mx-5 font-semibold '>DIZEZ</p>
+        <Link to='/' className='text-2xl mx-5 font-semibold '>
+          DIZEZ
+        </Link>
         <div className='flex flex-1 gap-6 ml-7 md:ml-28 text-lg duration-200'>
           <Link to='/'>Home</Link>
           <Link
@@ -63,7 +65,7 @@ export default function Navbar() {
             </Link>
           </div>
           {user && user.isAdmin && (
-            <Link to='/products/new'>
+            <Link to='/shop/add'>
               <button className='text-sm mx-5 bg-gray-700 text-white px-3 h-7 rounded-lg hover:brightness-200 shrink-0'>
                 새 제품 등록하기
               </button>
@@ -86,7 +88,7 @@ export default function Navbar() {
         <Link to='/shop/men'>Men</Link>
         <Link to='/shop/women'>Women</Link>
         <Link to='/shop/acc'>Accessories</Link>
-        <Link to='/shop/shoes'>shoes</Link>
+        <Link to='/shop/shoes'>Shoes</Link>
       </section>
     </div>
   );

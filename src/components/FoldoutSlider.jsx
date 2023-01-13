@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import "../styled/foldoutSlider.css";
+import MainButton from "./ui/MainButton";
 
 export default () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -34,7 +35,7 @@ export default () => {
                   <br />
                   Fashion Week
                 </p>
-                <button className='goToShop'>shop Now</button>
+                <MainButton text='Shop Now' bgcolor='black' color='white' />
               </div>
             </div>
           </div>
@@ -52,7 +53,7 @@ export default () => {
                   <br />
                   Fashion Week
                 </p>
-                <button className='goToShop'>shop Now</button>
+                <MainButton text='Shop Now' bgcolor='white' color='black' />
               </div>
             </div>
           </div>
@@ -70,7 +71,7 @@ export default () => {
                   <br />
                   Fashion Week
                 </p>
-                <button className='goToShop'>shop Now</button>
+                <MainButton text='Shop Now' bgcolor='black' color='white' />
               </div>
             </div>
           </div>
