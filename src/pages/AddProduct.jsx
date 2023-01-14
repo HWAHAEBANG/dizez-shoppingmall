@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { addNewProduct } from "../api/firebase";
 import { uploadImage } from "../api/uploader";
 import Banner from "../components/Banner";
 import MainButton from "../components/ui/MainButton";
@@ -31,10 +32,21 @@ export default function AddProduct() {
   // console.log(file);
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log(e);
+    const timeStamp = Date.now();
     uploadImage(file).then((url) => {
       console.log(url);
+      addNewProduct(product, url, timeStamp);
     });
+    setProduct({
+      category: "",
+      title: "",
+      price: "",
+      description: "",
+      size: "",
+      color: "",
+    });
+    setFile();
   };
 
   return (
@@ -59,8 +71,9 @@ export default function AddProduct() {
         <section className='basis-1/2 px-20'>
           <form className='flex flex-col' onSubmit={handleSubmit}>
             <label htmlFor='file' className={LABEL_PROPERTY}>
-              Product Image
+              Product Image (여러장 업로드로 리팩토링 예정)
             </label>
+            {/* 업로드 완류 후 파일 이름 남는 현상 해결 요망 */}
             <input
               id='file'
               className={INPUT_PROPERTY}
@@ -71,7 +84,7 @@ export default function AddProduct() {
               required
             />
             <label htmlFor='category' className={LABEL_PROPERTY}>
-              Category
+              Category (옵션으로 리팩토링 예정)
             </label>
             <input
               id='category'
@@ -136,7 +149,7 @@ export default function AddProduct() {
               required
             />
             <label htmlFor='color' className={LABEL_PROPERTY}>
-              Color
+              Color (체크박스로 리팩토링 예정)
             </label>
             <input
               id='color'
@@ -148,7 +161,12 @@ export default function AddProduct() {
               placeholder='색상 종류를 ",(콤마)"로 구분하여 입력해주세요.'
               required
             />
-            <MainButton text='Upload' bgcolor='black' color='white' />
+            <MainButton
+              text='Upload'
+              bgcolor='black'
+              color='white'
+              onSubmit={handleSubmit}
+            />
           </form>
         </section>
       </div>

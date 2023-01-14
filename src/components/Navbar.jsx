@@ -35,7 +35,7 @@ export default function Navbar() {
     >
       <section className='flex justify-between items-center h-14'>
         <Link to='/' className='text-2xl mx-5 font-semibold '>
-          DIZEZ
+          DI:ZEZ
         </Link>
         <div className='flex flex-1 gap-6 ml-7 md:ml-28 text-lg duration-200'>
           <Link to='/'>Home</Link>
@@ -71,7 +71,12 @@ export default function Navbar() {
               </button>
             </Link>
           )}
-          {user && <div className='mx-5 shrink-0'>{user.displayName}</div>}
+          {user && (
+            <div className='mx-5 shrink-0'>
+              {user.displayName}
+              <span className='text-xs'> 님</span>
+            </div>
+          )}
           {user && (
             <button className='mx-5' onClick={handleLogout}>
               Logout
