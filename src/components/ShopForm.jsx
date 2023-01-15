@@ -13,7 +13,8 @@ export default function ShopForm({ category }) {
     data: products,
   } = useQuery(["products", { category }], () => getProducts(category));
 
-  console.log(products);
+  const handleSort = () => {};
+
   return (
     <div className='pt-14 font-["Raleway"]'>
       <Banner
@@ -22,7 +23,7 @@ export default function ShopForm({ category }) {
           "Casual linen. Shirt design. 100% suede leather. Backstitch elbow patch"
         }
       />
-      <SortBar />
+      <SortBar products={products} onSort={handleSort} />
       {isLoading && <p>로딩중인데여..</p>}
       {error && <p>{error}</p>}
       <ProductList products={products} />

@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({
-  product: { category, image, price, timeStamp, title },
+  product,
+  product: { id, category, image, price, timeStamp, title },
 }) {
   const [heart, setHeart] = useState(false);
 
+  const navigate = useNavigate();
+
+  const enter = () => {
+    navigate(`/shop/${id}`, { state: { product: product } });
+  };
+
   return (
-    <div className='p-3 font-["Raleway"]'>
+    <div className='p-3 font-["Raleway"]' onClick={enter}>
       <div className='h-10 bg-white flex justify-between items-center px-2'>
         <div className='flex gap-2'>
           <div className='bg-black text-white px-1 text-sm leading-5'>BEST</div>
