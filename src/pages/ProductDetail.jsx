@@ -57,7 +57,7 @@ export default function ProductDetail() {
         <p className='text-3xl'>{title}</p>
         <p className='text-2xl'>￦ {price}</p>
         <p>{description}</p>
-        <div className='text-xl flex gap-2 mt-14'>
+        <div className='text-xl flex gap-2 mt-14 '>
           <span className='mr-16'>SIZE</span>
           {size.map((item, index) => (
             <div
@@ -88,13 +88,17 @@ export default function ProductDetail() {
             ></div>
           ))}
         </div>
-        <div className='flex gap-2 mt-8'>
-          <Quantity setSelectedQuantity={setSelectedQuantity} />
+        <div className='flex gap-2 mt-8  bg-slate-500'>
+          <Quantity
+            quantityFromDetail={selectedQuantity}
+            setQuantityFromDetail={setSelectedQuantity}
+          />
           <MainButton
             text='ADD TO BASKET'
             bgcolor='black'
             color='white'
             action={handleSubmit}
+            length='full'
           />
         </div>
       </section>

@@ -87,3 +87,19 @@ export async function addOrUpdateToCart(userId, product) {
 export async function removeFromCart(userId, productId) {
   return remove(ref(database, `cart/${userId}/${productId}`));
 }
+
+export async function getDibbs(userId) {
+  return get(ref(database, `dibbs/${userId}`)) //
+    .then((snapshot) => {
+      const items = snapshot.val() || {};
+      return Object.values(items);
+    });
+}
+
+export async function addOrUpdateToDibbs(userId, product) {
+  return set(ref(database, `dibbs/${userId}/${product.id}`), product);
+}
+
+export async function removeFromDibbs(userId, productId) {
+  return remove(ref(database, `dibbs/${userId}/${productId}`));
+}
