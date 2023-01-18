@@ -1,31 +1,32 @@
 import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { addOrUpdateToDibbs, removeFromDibbs } from "../api/firebase";
-import { useAuthContext } from "../context/AuthContext";
 import { RxCross2 } from "react-icons/rx";
+import useDibbs from "../hooks/useDibbs";
 
 export default function ProductCard({
   product,
   product: { id, category, image, price, timeStamp, title },
   comeFromDibbs,
 }) {
-  const { uid } = useAuthContext();
+  const navigate = useNavigate();
   const [heart, setHeart] = useState(false);
 
-  // console.log(uid);
+  const {
+    // dibbsQuery: { data: dibbsProducts },
+    removeDibbsItem,
+    addOrUpdateDibbsItem,
+  } = useDibbs(); //
 
   const heartOn = () => {
     setHeart((heart) => !heart);
-    addOrUpdateToDibbs(uid, product);
+    addOrUpdateDibbsItem.mutate(product);
   };
 
   const heartOff = () => {
     setHeart((heart) => !heart);
-    removeFromDibbs(uid, product.id);
+    removeDibbsItem.mutate(id);
   };
-
-  const navigate = useNavigate();
 
   const enter = () => {
     navigate(`/shop/${id}`, { state: { product: product } });
@@ -42,7 +43,7 @@ export default function ProductCard({
         </div>
         {comeFromDibbs ? (
           <div>
-            <RxCross2 onClick={() => removeFromDibbs(uid, product.id)} />
+            <RxCross2 onClick={heartOff} />
           </div>
         ) : (
           <div>
@@ -53,7 +54,7 @@ export default function ProductCard({
       </div>
       <div onClick={enter}>
         <div className='w-90 h-96 overflow-hidden'>
-          <img className=' w-90' src={image} alt='image' />
+          <img className=' w-90' src={image} alt='product' />
         </div>
         <div className=' p-3'>
           <p className='text-xs text-gray-500'>{category}</p>

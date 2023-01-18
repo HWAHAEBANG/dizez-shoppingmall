@@ -1,5 +1,4 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React from "react";
 import { addOrUpdateToCart, getCart, removeFromCart } from "../api/firebase";
 import { useAuthContext } from "../context/AuthContext";
 

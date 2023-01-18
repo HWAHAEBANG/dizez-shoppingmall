@@ -1,6 +1,13 @@
 import React from "react";
 
-export default function MainButton({ text, bgcolor, color, action, length }) {
+export default function MainButton({
+  product,
+  text,
+  bgcolor,
+  color,
+  length,
+  action,
+}) {
   return (
     <div className='inline' onClick={action}>
       <button

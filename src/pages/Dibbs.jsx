@@ -16,6 +16,9 @@ export default function Dibbs() {
     enabled: !!uid,
   });
 
+  isLoading && <p>로딩중입니다</p>;
+  error && <p>에러입니다</p>;
+
   return (
     <div className='pt-14'>
       <Banner title='Dibbs' subTitle='My Colletcion' />

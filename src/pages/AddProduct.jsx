@@ -1,14 +1,14 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+// import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { addNewProduct } from "../api/firebase";
 import { uploadImage } from "../api/uploader";
 import Banner from "../components/Banner";
 import MainButton from "../components/ui/MainButton";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const INPUT_PROPERTY = "bg-zinc-100 x-2 h-12 p-2 rounded-sm mb-5 border";
 const LABEL_PROPERTY = "w-96 mb-2";
 export default function AddProduct() {
+  const [success, setSuccess] = useState(false);
   const [product, setProduct] = useState({
     category: "",
     title: "",
@@ -19,48 +19,42 @@ export default function AddProduct() {
   });
   const [file, setFile] = useState();
 
-  //mutation 시작점
-  const queryClient = useQueryClient();
-  const addProduct = useMutation(
-    // 뮤테이션 할 때 콜백함수를 만들어줘야하는데,
-    // 인자로 Product과 url를 낱개로 받아올 것임
-    ({ product, url }) => addNewProduct(product, url),
-    {
-      // 사이드 이펙 전달해줄 것 : 뮤테이션이 업데이크가 성공적으로 잘 되면
-      // 쿼리 클라이언트야 products키를 가진 캐시를 invalidateQueries를 해주겠니
-      onSuccess: () => queryClient.invalidateQueries(["product"]),
-    }
-  );
-  //mutation 끝점
+  // //mutation 시작점
+  // const queryClient = useQueryClient();
+  // const addProduct = useMutation(
+  //   // 뮤테이션 할 때 콜백함수를 만들어줘야하는데,
+  //   // 인자로 Product과 url를 낱개로 받아올 것임
+  //   ({ product, url }) => addNewProduct(product, url),
+  //   {
+  //     // 사이드 이펙 전달해줄 것 : 뮤테이션이 업데이크가 성공적으로 잘 되면
+  //     // 쿼리 클라이언트야 products키를 가진 캐시를 invalidateQueries를 해주겠니
+  //     onSuccess: () => queryClient.invalidateQueries(["product"]),
+  //   }
+  // );
+  // //mutation 끝점
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    // console.log(e);
     if (name === "file") {
       setFile(files && files[0]);
-      // console.log(files);
-      // console.log(files[0]);
       return;
     }
     setProduct((product) => ({ ...product, [name]: value }));
   };
-  // console.log(product);
-  // console.log(file);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(e);
     const timeStamp = Date.now();
     uploadImage(file) //
       .then((url) => {
-        //console.log(url);
         addNewProduct.mutate(
           { product, url, timeStamp },
           {
             onSuccess: () => {
-              {
-                // setSuccess("성공적으로 제품이 추가되었습니다");
-                // setTimeout(()=>{setScuccess(null);},4000);
-              }
+              setSuccess("성공적으로 제품이 추가되었습니다");
+              setTimeout(() => {
+                setSuccess(null);
+              }, 4000);
             },
           }
         );
@@ -195,6 +189,7 @@ export default function AddProduct() {
               onSubmit={handleSubmit}
             />
           </form>
+          {success && <p className='my-2'>✅{success}</p>}
         </section>
       </div>
     </>

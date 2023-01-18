@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { addOrUpdateToCart } from "../api/firebase";
 import Quantity from "../components/Quantity";
 import MainButton from "../components/ui/MainButton";
-import { useAuthContext } from "../context/AuthContext";
+import useCart from "../hooks/useCart";
+// import useDibbs from "../hooks/useDibbs";
 
 export default function ProductDetail() {
-  const { uid } = useAuthContext();
   const {
     state: { product },
   } = useLocation();
@@ -18,11 +17,7 @@ export default function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState();
   const [selectedQuantity, setSelectedQuantity] = useState(1);
 
-  // console.log(selectedSize);
-  // console.log(selectedColor);
-  // console.log(selectedQuantity);
-
-  // console.log(uid);
+  const { addOrUpdateCartItem } = useCart();
 
   const handleSubmit = () => {
     if (!selectedSize && !selectedColor) {
@@ -42,15 +37,24 @@ export default function ProductDetail() {
         selectedColor,
         selectedQuantity,
       };
-      addOrUpdateToCart(uid, product);
+      addOrUpdateCartItem.mutate(product, {
+        onSuccess: () => {
+          // setSuccess("장바구니에 추가되었습니다.");
+          // setTimeout(() => setSuccess(null), 3000);
+        },
+      });
       alert("장바구니에 담겼습니다 장바구니로 이동하시겠습니까?");
     }
   };
 
+  // const {
+  //   dibbsQuery: { data: dibbsProducts },
+  // } = useDibbs();
+
   return (
     <div className='pt-24 flex p-8 font-["Raleway"] '>
       <section className='basis-1/2'>
-        <img src={image} alt='product image' className='w-full' />
+        <img src={image} alt='product' className='w-full' />
       </section>
       <section className='pt-10 pl-28 flex flex-col gap-4 basis-1/2'>
         <p>{category}</p>
@@ -88,19 +92,20 @@ export default function ProductDetail() {
             ></div>
           ))}
         </div>
-        <div className='flex gap-2 mt-8  bg-slate-500'>
+        <div className='flex gap-2 text-xl mb-8'>
+          <span className='mr-2'>QUANTITY</span>
           <Quantity
             quantityFromDetail={selectedQuantity}
             setQuantityFromDetail={setSelectedQuantity}
           />
-          <MainButton
-            text='ADD TO BASKET'
-            bgcolor='black'
-            color='white'
-            action={handleSubmit}
-            length='full'
-          />
         </div>
+        <MainButton
+          text='ADD TO BASKET'
+          bgcolor='black'
+          color='white'
+          action={handleSubmit}
+          length='full'
+        />
       </section>
     </div>
   );

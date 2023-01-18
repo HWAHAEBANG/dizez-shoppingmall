@@ -1,22 +1,10 @@
 import React from "react";
 import Banner from "../components/Banner";
 import MainButton from "../components/ui/MainButton";
-import { useAuthContext } from "../context/AuthContext";
-import { getCart } from "../api/firebase";
-import { useQuery } from "@tanstack/react-query";
 import CartItem from "../components/CartItem";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import useCart from "../hooks/useCart";
 
 export default function Cart() {
-  // const { uid } = useAuthContext();
-
-  // const {
-  //   isLoading,
-  //   error,
-  //   data: products,
-  // } = useQuery(["cart"], () => getCart(uid));
-
   const {
     cartQuery: { isLoading, data: products },
   } = useCart();

@@ -72,14 +72,6 @@ export async function getProducts(category) {
   });
 }
 
-export async function getCart(userId) {
-  return get(ref(database, `cart/${userId}`)) //
-    .then((snapshot) => {
-      const items = snapshot.val() || {};
-      return Object.values(items);
-    });
-}
-
 export async function addOrUpdateToCart(userId, product) {
   return set(ref(database, `cart/${userId}/${product.id}`), product);
 }
@@ -88,8 +80,8 @@ export async function removeFromCart(userId, productId) {
   return remove(ref(database, `cart/${userId}/${productId}`));
 }
 
-export async function getDibbs(userId) {
-  return get(ref(database, `dibbs/${userId}`)) //
+export async function getCart(userId) {
+  return get(ref(database, `cart/${userId}`)) //
     .then((snapshot) => {
       const items = snapshot.val() || {};
       return Object.values(items);
@@ -102,4 +94,12 @@ export async function addOrUpdateToDibbs(userId, product) {
 
 export async function removeFromDibbs(userId, productId) {
   return remove(ref(database, `dibbs/${userId}/${productId}`));
+}
+
+export async function getDibbs(userId) {
+  return get(ref(database, `dibbs/${userId}`)) //
+    .then((snapshot) => {
+      const items = snapshot.val() || {};
+      return Object.values(items);
+    });
 }

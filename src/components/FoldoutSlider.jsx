@@ -4,7 +4,7 @@ import "keen-slider/keen-slider.min.css";
 import "../styled/foldoutSlider.css";
 import MainButton from "./ui/MainButton";
 
-export default () => {
+export default function FoldoutSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider({
@@ -23,7 +23,11 @@ export default () => {
         <div ref={sliderRef} className='keen-slider'>
           <div className='keen-slider__slide number-slide1'>
             <div className='container-left'>
-              <img className='main_2' src='./image/main/main_2.jpg' />
+              <img
+                className='main_2'
+                src='./image/main/main_2.jpg'
+                alt='image1'
+              />
             </div>
             <div className='container-right'>
               <div className='text_container_1'>
@@ -41,7 +45,11 @@ export default () => {
           </div>
           <div className='keen-slider__slide number-slide2'>
             <div className='container-left'>
-              <img className='main_1' src='./image/main/main_1.jpg' />
+              <img
+                className='main_1'
+                src='./image/main/main_1.jpg'
+                alt='image2'
+              />
             </div>
             <div className='container-right'>
               <div className='text_container_2'>
@@ -59,7 +67,11 @@ export default () => {
           </div>
           <div className='keen-slider__slide number-slide3'>
             <div className='container-left'>
-              <img className='main_3' src='./image/main/main_3.jpg' />
+              <img
+                className='main_3'
+                src='./image/main/main_3.jpg'
+                alt='image3'
+              />
             </div>
             <div className='container-right'>
               <div className='text_container_3'>
@@ -117,7 +129,7 @@ export default () => {
       )}
     </>
   );
-};
+}
 
 function Arrow(props) {
   const disabeld = props.disabled ? " arrow--disabled" : "";

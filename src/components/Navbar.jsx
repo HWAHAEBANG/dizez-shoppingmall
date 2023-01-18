@@ -1,33 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHeart, FaShoppingBag } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
-import { getCart, login, logout, onUserStateChange } from "../api/firebase";
 import { useAuthContext } from "../context/AuthContext";
-import { useQuery } from "@tanstack/react-query";
+import useCart from "../hooks/useCart";
+import useDibbs from "../hooks/useDibbs";
 
 // 로그인 구현까지 완료되면 반응형 좀 손 보겠습니다~ -칵투스
 
 export default function Navbar() {
   const [mouseOver, setMouseOver] = useState(false);
-  // const [user, setUser] = useState();
-
-  // useEffect(() => {
-  //   onUserStateChange((user) => {
-  //     // console.log(user);
-  //     setUser(user);
-  //   });
-  // }, []);
-
-  const { user, uid, login, logout } = useAuthContext();
+  const { user, login, logout } = useAuthContext();
 
   const handleLogin = () => login();
   const handleLogout = () => logout();
 
-  const { data: cartProduct } = useQuery(["cart"], () => getCart(uid));
-  const { data: dibbsProduct } = useQuery(["cart"], () => getCart(uid));
+  const {
+    cartQuery: { data: cartProducts },
+  } = useCart();
 
-  // console.log(user);
+  const {
+    dibbsQuery: { data: dibbsProducts },
+  } = useDibbs();
+
   return (
     <div
       onMouseLeave={() => setMouseOver(false)}
@@ -58,13 +53,13 @@ export default function Navbar() {
             <Link to='/dibbs' className='flex items-center gap-2'>
               <FaHeart />
               <div className='bg-black h-6 w-6 text-white text-sm text-center rounded-full'>
-                {dibbsProduct && dibbsProduct.length}
+                {dibbsProducts && dibbsProducts.length}
               </div>
             </Link>
             <Link to='/cart' className='flex items-center gap-2'>
               <FaShoppingBag />
               <div className='bg-black h-6 w-6 text-white text-sm text-center rounded-full'>
-                {cartProduct && cartProduct.length}
+                {cartProducts && cartProducts.length}
               </div>
             </Link>
           </div>
