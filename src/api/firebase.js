@@ -50,6 +50,7 @@ async function adminUser(user) {
 }
 
 export async function addNewProduct(product, imageUrl, timeStamp) {
+  console.log(typeof product.category);
   const id = uuid();
   set(ref(database, `products/${product.category}/${id}`), {
     ...product,

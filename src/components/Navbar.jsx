@@ -65,7 +65,7 @@ export default function Navbar() {
           </div>
           {user && user.isAdmin && (
             <Link to='/shop/add'>
-              <button className='text-sm mx-5 bg-gray-700 text-white px-3 h-7 rounded-lg hover:brightness-200 shrink-0'>
+              <button className='text-sm mx-5 bg-gray-700 text-white px-3 h-7 rounded-lg hover:brightness-200 w-36'>
                 새 제품 등록하기
               </button>
             </Link>

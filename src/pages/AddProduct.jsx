@@ -1,9 +1,11 @@
 // import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { addNewProduct } from "../api/firebase";
+// import { addNewProduct } from "../api/firebase";
 import { uploadImage } from "../api/uploader";
 import Banner from "../components/Banner";
 import MainButton from "../components/ui/MainButton";
+import useProducts from "../hooks/userProducts";
 
 const INPUT_PROPERTY = "bg-zinc-100 x-2 h-12 p-2 rounded-sm mb-5 border";
 const LABEL_PROPERTY = "w-96 mb-2";
@@ -18,10 +20,11 @@ export default function AddProduct() {
     color: "",
   });
   const [file, setFile] = useState();
+  const { addProduct } = useProducts();
 
   // //mutation 시작점
   // const queryClient = useQueryClient();
-  // const addProduct = useMutation(
+  // const addNewProduct = useMutation(
   //   // 뮤테이션 할 때 콜백함수를 만들어줘야하는데,
   //   // 인자로 Product과 url를 낱개로 받아올 것임
   //   ({ product, url }) => addNewProduct(product, url),
@@ -47,7 +50,7 @@ export default function AddProduct() {
     const timeStamp = Date.now();
     uploadImage(file) //
       .then((url) => {
-        addNewProduct.mutate(
+        addProduct.mutate(
           { product, url, timeStamp },
           {
             onSuccess: () => {
@@ -69,6 +72,8 @@ export default function AddProduct() {
     });
     setFile();
   };
+
+  // console.log(product);
 
   return (
     <>
@@ -107,7 +112,7 @@ export default function AddProduct() {
             <label htmlFor='category' className={LABEL_PROPERTY}>
               Category (옵션으로 리팩토링 예정)
             </label>
-            <input
+            {/* <input
               id='category'
               className={INPUT_PROPERTY}
               type='text'
@@ -116,7 +121,17 @@ export default function AddProduct() {
               onChange={handleChange}
               placeholder='카테고리를 입력해주세요.'
               required
-            />
+            /> */}
+            <select
+              className={INPUT_PROPERTY}
+              name='category'
+              onChange={handleChange}
+            >
+              <option value='Men'>Men</option>
+              <option value='Women'>Women</option>
+              <option value='Accessories'>Accessories</option>
+              <option value='Shoes'>Shoes</option>
+            </select>
             <label htmlFor='title' className={LABEL_PROPERTY}>
               Product Name
             </label>
@@ -172,7 +187,7 @@ export default function AddProduct() {
             <label htmlFor='color' className={LABEL_PROPERTY}>
               Color (체크박스로 리팩토링 예정)
             </label>
-            <input
+            {/* <input
               id='color'
               className={INPUT_PROPERTY}
               type='text'
@@ -181,7 +196,21 @@ export default function AddProduct() {
               onChange={handleChange}
               placeholder='색상 종류를 ",(콤마)"로 구분하여 입력해주세요.'
               required
-            />
+            /> */}
+            <div>
+              <input type='checkBox' id='red' />
+              <label htmlFor='red'>red</label>
+              <input type='checkBox' id='green' />
+              <label htmlFor='green'>green</label>
+              <input type='checkBox' id='blue' />
+              <label htmlFor='blue'>blue</label>
+              <input type='checkBox' id='yellow' />
+              <label htmlFor='yellow'>yellow</label>
+              <input type='checkBox' id='black' />
+              <label htmlFor='black'>black</label>
+              <input type='checkBox' id='white' />
+              <label htmlFor='white'>white</label>
+            </div>
             <MainButton
               text='Upload'
               bgcolor='black'

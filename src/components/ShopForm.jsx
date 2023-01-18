@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getProducts } from "../api/firebase";
 import { useQuery } from "@tanstack/react-query";
 import Banner from "../components/Banner";
+import ProductCard from "../components/ProductCard";
 import ProductList from "../components/ProductList";
 import SortBar from "../components/SortBar";
 
@@ -10,7 +11,7 @@ export default function ShopForm({ category }) {
     isLoading,
     error,
     data: products,
-  } = useQuery(["products", { category }], () => getProducts(category), {
+  } = useQuery(["products", category], () => getProducts(category), {
     staleTime: 1000 * 60,
   });
 
