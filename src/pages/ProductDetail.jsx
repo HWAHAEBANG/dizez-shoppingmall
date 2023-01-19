@@ -10,7 +10,7 @@ export default function ProductDetail() {
     state: { product },
   } = useLocation();
 
-  const { id, image, category, title, price, description, size, color } =
+  const { id, image, category, title, price, description, size, color, tags } =
     product;
 
   const [selectedSize, setSelectedSize] = useState();
@@ -57,8 +57,20 @@ export default function ProductDetail() {
         <img src={image} alt='product' className='w-full' />
       </section>
       <section className='pt-10 pl-28 flex flex-col gap-4 basis-1/2'>
+        <div className='flex gap-2'>
+          {tags && tags.new && (
+            <div className='bg-red-600 text-white px-1 text-sm leading-5'>
+              NEW
+            </div>
+          )}
+          {tags && tags.best && (
+            <div className='bg-black text-white px-1 text-sm leading-5'>
+              BEST
+            </div>
+          )}
+        </div>
         <p>{category}</p>
-        <p className='text-3xl'>{title}</p>
+        <p className='text-3xl -mt-6'>{title}</p>
         <p className='text-2xl'>￦ {price}</p>
         <p>{description}</p>
         <div className='text-xl flex gap-2 mt-14 '>

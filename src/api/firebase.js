@@ -50,7 +50,7 @@ async function adminUser(user) {
 }
 
 export async function addNewProduct(product, imageUrl, timeStamp) {
-  console.log(typeof product.category);
+  // console.log(typeof product.category);
   const id = uuid();
   set(ref(database, `products/${product.category}/${id}`), {
     ...product,
@@ -58,7 +58,7 @@ export async function addNewProduct(product, imageUrl, timeStamp) {
     price: parseInt(product.price),
     image: imageUrl,
     size: product.size.split(","),
-    color: product.color.split(","),
+    // color: product.color.split(","),
     timeStamp: timeStamp,
   });
 }

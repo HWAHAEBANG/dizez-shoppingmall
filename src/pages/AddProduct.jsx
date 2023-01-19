@@ -1,15 +1,19 @@
 // import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import React, { useState } from "react";
+import { set } from "firebase/database";
+import React, { useEffect, useState } from "react";
 // import { addNewProduct } from "../api/firebase";
 import { uploadImage } from "../api/uploader";
 import Banner from "../components/Banner";
 import MainButton from "../components/ui/MainButton";
 import useProducts from "../hooks/userProducts";
 
-const INPUT_PROPERTY = "bg-zinc-100 x-2 h-12 p-2 rounded-sm mb-5 border";
+const INPUT_PROPERTY =
+  "bg-zinc-100 x-2 h-12 p-2 rounded-sm mb-5 border flex items-center";
 const LABEL_PROPERTY = "w-96 mb-2";
 export default function AddProduct() {
+  const [tags, setTags] = useState({ new: false, best: false });
+  const [colorArray, setColorArray] = useState([]);
   const [success, setSuccess] = useState(false);
   const [product, setProduct] = useState({
     category: "",
@@ -22,19 +26,31 @@ export default function AddProduct() {
   const [file, setFile] = useState();
   const { addProduct } = useProducts();
 
-  // //mutation 시작점
-  // const queryClient = useQueryClient();
-  // const addNewProduct = useMutation(
-  //   // 뮤테이션 할 때 콜백함수를 만들어줘야하는데,
-  //   // 인자로 Product과 url를 낱개로 받아올 것임
-  //   ({ product, url }) => addNewProduct(product, url),
-  //   {
-  //     // 사이드 이펙 전달해줄 것 : 뮤테이션이 업데이크가 성공적으로 잘 되면
-  //     // 쿼리 클라이언트야 products키를 가진 캐시를 invalidateQueries를 해주겠니
-  //     onSuccess: () => queryClient.invalidateQueries(["product"]),
-  //   }
-  // );
-  // //mutation 끝점
+  const handleTags = (e) => {
+    // console.log(e.target.id);
+    // console.log(e.target.checked);
+    setTags({ ...tags, [e.target.id]: e.target.checked });
+  };
+  // setProduct((product) => ({ ...product, tags: tags }));
+  // console.log(tags);
+  // console.log(product);
+
+  const handleCheck = (e) => {
+    // console.log(e.target.checked);
+    // console.log(e.target.id);
+    e.target.checked && setColorArray([...colorArray, e.target.id]);
+
+    let temp =
+      !e.target.checked && colorArray.filter((item) => item !== e.target.id);
+    temp && setColorArray(temp);
+  };
+
+  useEffect(() => {
+    setProduct((product) => ({ ...product, color: colorArray, tags: tags }));
+  }, [colorArray, tags]);
+
+  // console.log(product);
+  // console.log(colorArray);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -68,12 +84,11 @@ export default function AddProduct() {
       price: "",
       description: "",
       size: "",
-      color: "",
+      color: [],
+      tags: {},
     });
     setFile();
   };
-
-  // console.log(product);
 
   return (
     <>
@@ -184,38 +199,102 @@ export default function AddProduct() {
               placeholder='사이즈 종류를 ",(콤마)"로 구분하여 입력해주세요.'
               required
             />
-            <label htmlFor='color' className={LABEL_PROPERTY}>
+            <label className={LABEL_PROPERTY}>
               Color (체크박스로 리팩토링 예정)
             </label>
-            {/* <input
-              id='color'
-              className={INPUT_PROPERTY}
-              type='text'
-              value={product.color ?? ""}
-              name='color'
-              onChange={handleChange}
-              placeholder='색상 종류를 ",(콤마)"로 구분하여 입력해주세요.'
-              required
-            /> */}
-            <div>
-              <input type='checkBox' id='red' />
-              <label htmlFor='red'>red</label>
-              <input type='checkBox' id='green' />
-              <label htmlFor='green'>green</label>
-              <input type='checkBox' id='blue' />
-              <label htmlFor='blue'>blue</label>
-              <input type='checkBox' id='yellow' />
-              <label htmlFor='yellow'>yellow</label>
-              <input type='checkBox' id='black' />
-              <label htmlFor='black'>black</label>
-              <input type='checkBox' id='white' />
-              <label htmlFor='white'>white</label>
+            <div className={INPUT_PROPERTY}>
+              <input
+                type='checkBox'
+                id='black'
+                className='mr-1'
+                onChange={handleCheck}
+              />
+              <label htmlFor='black' className='mr-5'>
+                Black
+              </label>
+              <input
+                type='checkBox'
+                id='white'
+                className='mr-1'
+                onChange={handleCheck}
+              />
+              <label htmlFor='white' className='mr-5'>
+                White
+              </label>
+              <input
+                type='checkBox'
+                id='red'
+                className='mr-1'
+                onChange={handleCheck}
+              />
+              <label htmlFor='red' className='mr-5'>
+                Red
+              </label>
+              <input
+                type='checkBox'
+                id='green'
+                className='mr-1'
+                onChange={handleCheck}
+              />
+              <label htmlFor='green' className='mr-5'>
+                Green
+              </label>
+              <input
+                type='checkBox'
+                id='blue'
+                className='mr-1'
+                onChange={handleCheck}
+              />
+              <label htmlFor='blue' className='mr-5'>
+                Blue
+              </label>
+              <input
+                type='checkBox'
+                id='yellow'
+                className='mr-1'
+                onChange={handleCheck}
+              />
+              <label htmlFor='yellow' className='mr-5'>
+                Yellow
+              </label>
+              <input
+                type='checkBox'
+                id='pink'
+                className='mr-1'
+                onChange={handleCheck}
+              />
+              <label htmlFor='pink' className='mr-5'>
+                Pink
+              </label>
+            </div>
+
+            <label className={LABEL_PROPERTY}>Tags</label>
+            <div className={INPUT_PROPERTY}>
+              <input
+                type='checkbox'
+                id='new'
+                className='mr-1'
+                onChange={handleTags}
+              />
+              <label htmlFor='new' className='mr-5'>
+                NEW
+              </label>
+              <input
+                type='checkbox'
+                id='best'
+                className='mr-1'
+                onChange={handleTags}
+              />
+              <label htmlFor='best' className='mr-5'>
+                BEST
+              </label>
             </div>
             <MainButton
               text='Upload'
               bgcolor='black'
               color='white'
               onSubmit={handleSubmit}
+              length='full'
             />
           </form>
           {success && <p className='my-2'>✅{success}</p>}

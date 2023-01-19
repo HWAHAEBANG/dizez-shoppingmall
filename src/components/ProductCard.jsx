@@ -6,12 +6,12 @@ import useDibbs from "../hooks/useDibbs";
 
 export default function ProductCard({
   product,
-  product: { id, category, image, price, timeStamp, title },
+  product: { id, category, image, price, timeStamp, title, tags },
   comeFromDibbs,
 }) {
   const navigate = useNavigate();
   const [heart, setHeart] = useState(false);
-
+  console.log(tags);
   const {
     // dibbsQuery: { data: dibbsProducts },
     removeDibbsItem,
@@ -36,10 +36,16 @@ export default function ProductCard({
     <div className='p-3 font-["Raleway"]'>
       <div className='h-10 bg-white flex justify-between items-center px-2'>
         <div className='flex gap-2'>
-          <div className='bg-black text-white px-1 text-sm leading-5'>BEST</div>
-          <div className='bg-red-600 text-white px-1 text-sm leading-5'>
-            NEW
-          </div>
+          {tags && tags.new && (
+            <div className='bg-red-600 text-white px-1 text-sm leading-5'>
+              NEW
+            </div>
+          )}
+          {tags && tags.best && (
+            <div className='bg-black text-white px-1 text-sm leading-5'>
+              BEST
+            </div>
+          )}
         </div>
         {comeFromDibbs ? (
           <div>
