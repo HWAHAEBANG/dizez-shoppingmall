@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, CSSProperties } from "react";
 import { getProducts } from "../api/firebase";
 import { useQuery } from "@tanstack/react-query";
 import Banner from "../components/Banner";
 import ProductCard from "../components/ProductCard";
 import ProductList from "../components/ProductList";
 import SortBar from "../components/SortBar";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function ShopForm({ category }) {
   const {
@@ -44,7 +45,12 @@ export default function ShopForm({ category }) {
       products && products.sort((a, b) => b[order[0]] - a[order[0]]);
   }
   // sort 끝점
-
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "gray",
+  };
+  let [color, setColor] = useState("#ffffff");
   return (
     <div className='pt-14 font-["Raleway"]'>
       <Banner
@@ -54,7 +60,18 @@ export default function ShopForm({ category }) {
         }
       />
       <SortBar products={products} onSelected={handleSelected} />
-      {isLoading && <p>로딩중인데여..</p>}
+      {isLoading && (
+        <div className='h-screen pt-52'>
+          <ClipLoader
+            color={color}
+            loading={isLoading}
+            cssOverride={override}
+            size={150}
+            aria-label='Loading Spinner'
+            data-testid='loader'
+          />
+        </div>
+      )}
       {error && <p>{error}</p>}
       <ProductList products={sortedProducts} />
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
@@ -10,7 +10,14 @@ export default function ProductCard({
   comeFromDibbs,
 }) {
   const navigate = useNavigate();
-  const [heart, setHeart] = useState(false);
+  const [heart, setHeart] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    } else {
+      return JSON.parse(window.localStorage.getItem(`heartKey${id}`));
+    }
+  });
+
   console.log(tags);
   const {
     // dibbsQuery: { data: dibbsProducts },
@@ -31,6 +38,10 @@ export default function ProductCard({
   const enter = () => {
     navigate(`/shop/${id}`, { state: { product: product } });
   };
+
+  useEffect(() => {
+    localStorage.setItem(`heartKey${id}`, JSON.stringify(heart));
+  }, [heart]);
 
   return (
     <div className='p-3 font-["Raleway"]'>

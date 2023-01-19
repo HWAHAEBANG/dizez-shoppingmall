@@ -60,7 +60,7 @@ export default function AddProduct() {
       setFile(files && files[0]);
       return;
     }
-    setProduct((product) => ({ ...product, [name]: value }));
+    setProduct((product) => ({ ...product, [name]: value, category: "Men" }));
   };
 
   const handleSubmit = (e) => {
@@ -140,6 +140,7 @@ export default function AddProduct() {
               className={INPUT_PROPERTY}
               name='category'
               onChange={handleChange}
+              required='required'
             >
               <option value='Men'>Men</option>
               <option value='Women'>Women</option>
