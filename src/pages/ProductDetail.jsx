@@ -4,8 +4,11 @@ import Quantity from "../components/Quantity";
 import MainButton from "../components/ui/MainButton";
 import useCart from "../hooks/useCart";
 // import useDibbs from "../hooks/useDibbs";
+import { useAlert, transitions } from "react-alert";
 
 export default function ProductDetail() {
+  const alert = useAlert();
+
   const {
     state: { product },
   } = useLocation();
@@ -21,11 +24,11 @@ export default function ProductDetail() {
 
   const handleSubmit = () => {
     if (!selectedSize && !selectedColor) {
-      alert("사이즈와 색상을 선택하세요");
+      alert.error("사이즈와 색상을 선택하세요");
     } else if (!selectedSize && selectedColor) {
-      alert("사이즈를 선택하세요");
+      alert.error("사이즈를 선택하세요");
     } else if (selectedSize && !selectedColor) {
-      alert("색상을 선택하세요");
+      alert.error("색상을 선택하세요");
     } else {
       const product = {
         id,
@@ -43,10 +46,13 @@ export default function ProductDetail() {
           // setTimeout(() => setSuccess(null), 3000);
         },
       });
-      alert("장바구니에 담겼습니다 장바구니로 이동하시겠습니까?");
+
+      const test = "상품을 장바구니에 담았습니다.";
+      alert.success(test);
     }
   };
 
+  // console.log(test);
   // const {
   //   dibbsQuery: { data: dibbsProducts },
   // } = useDibbs();

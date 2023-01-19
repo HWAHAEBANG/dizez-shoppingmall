@@ -7,6 +7,7 @@ import { uploadImage } from "../api/uploader";
 import Banner from "../components/Banner";
 import MainButton from "../components/ui/MainButton";
 import useProducts from "../hooks/userProducts";
+import { useAlert } from "react-alert";
 
 const INPUT_PROPERTY =
   "bg-zinc-100 x-2 h-12 p-2 rounded-sm mb-5 border flex items-center";
@@ -14,7 +15,7 @@ const LABEL_PROPERTY = "w-96 mb-2";
 export default function AddProduct() {
   const [tags, setTags] = useState({ new: false, best: false });
   const [colorArray, setColorArray] = useState([]);
-  const [success, setSuccess] = useState(false);
+  // const [success, setSuccess] = useState(false);
   const [product, setProduct] = useState({
     category: "",
     title: "",
@@ -25,6 +26,7 @@ export default function AddProduct() {
   });
   const [file, setFile] = useState();
   const { addProduct } = useProducts();
+  const alert = useAlert();
 
   const handleTags = (e) => {
     // console.log(e.target.id);
@@ -70,10 +72,7 @@ export default function AddProduct() {
           { product, url, timeStamp },
           {
             onSuccess: () => {
-              setSuccess("성공적으로 제품이 추가되었습니다");
-              setTimeout(() => {
-                setSuccess(null);
-              }, 4000);
+              alert.success("제품이 등록되었습니다.");
             },
           }
         );
@@ -297,7 +296,7 @@ export default function AddProduct() {
               length='full'
             />
           </form>
-          {success && <p className='my-2'>✅{success}</p>}
+          {/* {success && <p className='my-2'>✅{success}</p>} */}
         </section>
       </div>
     </>

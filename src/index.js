@@ -14,6 +14,8 @@ import Women from "./pages/Women";
 import Acc from "./pages/Acc";
 import Shoes from "./pages/Shoes";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import { transitions, positions, Provider as AlertProvider } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
 
 const router = createBrowserRouter([
   {
@@ -74,9 +76,19 @@ const router = createBrowserRouter([
   },
 ]);
 
+// optional configuration
+const options = {
+  // you can also just use 'bottom center'
+  position: positions.BOTTOM_CENTER,
+  timeout: 5000,
+  offset: "30px",
+  // you can also just use 'scale'
+  transition: "scale",
+};
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <>
+  <AlertProvider template={AlertTemplate} {...options}>
     <RouterProvider router={router} />
-  </>
+  </AlertProvider>
 );
