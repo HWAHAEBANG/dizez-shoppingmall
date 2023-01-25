@@ -3,6 +3,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import RecentlyViewed from "./components/RecentlyViewed";
 import { AuthContextProvider } from "./context/AuthContext";
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         <Navbar />
         <Outlet />
         <Footer />
+        <RecentlyViewed />
       </AuthContextProvider>
     </QueryClientProvider>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Quantity from "../components/Quantity";
 import MainButton from "../components/ui/MainButton";
