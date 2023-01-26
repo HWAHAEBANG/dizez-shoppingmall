@@ -8,6 +8,7 @@ import Banner from "../components/Banner";
 import MainButton from "../components/ui/MainButton";
 import useProducts from "../hooks/userProducts";
 import { useAlert } from "react-alert";
+import { FaObjectUngroup } from "react-icons/fa";
 
 const INPUT_PROPERTY =
   "bg-zinc-100 x-2 h-12 p-2 rounded-sm mb-5 border flex items-center";
@@ -55,9 +56,11 @@ export default function AddProduct() {
   // console.log(colorArray);
 
   const handleChange = (e) => {
+    console.log(e);
     const { name, value, files } = e.target;
     if (name === "file") {
-      setFile(files && files[0]);
+      // console.log(files);
+      setFile(files && Object.values(files));
       return;
     }
     setProduct((product) => ({ ...product, [name]: value, category: "Men" }));
@@ -89,24 +92,50 @@ export default function AddProduct() {
     setFile();
   };
 
+  console.log(file);
+  // console.log(typeof file);
+  // console.log(Object.assign({}, file));
+
   return (
     <>
       <Banner title='Register a New Product' subTitle='새 제품 등록하기' />
       <div className=' flex m-10 font-["Raleway"]'>
-        <section className='basis-1/2 flex justify-center items-center'>
+        <section className='basis-1/2 flex flex-col justify-center items-center'>
           {!file && (
             <div className='h-full w-full flex justify-center items-center bg-gray-50 text-gray-600 text-center'>
               사진을 첨부하시면 <br />
               미리보기가 생성됩니다.
             </div>
           )}
+          {/* {file && (
+            <img
+            className=' max-h-screen'
+            src={URL.createObjectURL(file)}
+            alt='local file'
+            />
+          )} */}
+          {/* {file &&
+            file.map((item, index) => <span key={index}>{item.name}</span>)} */}
           {file && (
             <img
-              className=' max-h-screen'
-              src={URL.createObjectURL(file)}
+              className='h-full'
+              src={URL.createObjectURL(file[0])}
               alt='local file'
             />
           )}
+          <div className='flex'>
+            {file &&
+              file
+                .slice(1)
+                .map((item, index) => (
+                  <img
+                    key={index}
+                    className='h-40 w-28 py-4 px-2'
+                    src={URL.createObjectURL(item)}
+                    alt='local file'
+                  />
+                ))}
+          </div>
         </section>
         <section className='basis-1/2 px-20'>
           <form className='flex flex-col' onSubmit={handleSubmit}>
@@ -121,6 +150,7 @@ export default function AddProduct() {
               accept='image/* '
               name='file'
               onChange={handleChange}
+              multiple
               required
             />
             <label htmlFor='category' className={LABEL_PROPERTY}>
