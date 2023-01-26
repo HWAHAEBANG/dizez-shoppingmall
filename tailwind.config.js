@@ -8,6 +8,6 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [],
+  plugins: [require("tailwindcss-textshadow")],
 };
 // 'Raleway', sans-serif

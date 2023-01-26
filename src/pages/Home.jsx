@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <div>
       <Main />
-      <Promotion />
       <NewProduct />
+      <Promotion />
       <Advertise />
       <Event />
     </div>
