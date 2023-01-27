@@ -6,7 +6,11 @@ module.exports = {
       // 'display': ['Oswald', ...],
       body: ["Raleway", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      spacing: {
+        128: "40rem",
+      },
+    },
   },
   plugins: [require("tailwindcss-textshadow")],
 };

@@ -18,7 +18,7 @@ export default function ProductCard({
     }
   });
 
-  console.log(tags);
+  // console.log(tags);
   const {
     // dibbsQuery: { data: dibbsProducts },
     removeDibbsItem,
@@ -42,6 +42,8 @@ export default function ProductCard({
   useEffect(() => {
     localStorage.setItem(`heartKey${id}`, JSON.stringify(heart));
   }, [heart]);
+
+  console.log(typeof image);
 
   return (
     <div className='p-3 font-["Raleway"]'>
@@ -71,7 +73,12 @@ export default function ProductCard({
       </div>
       <div onClick={enter}>
         <div className='w-90 h-96 overflow-hidden'>
-          <img className=' w-90' src={image} alt='product' />
+          <img
+            className=' w-90'
+            src={typeof image === "object" ? image[0] : image}
+            //나중엔 다 배열로 올라갈거니까 나중엔 없애도 되겠어
+            alt='product'
+          />
         </div>
         <div className=' p-3'>
           <p className='text-xs text-gray-500'>{category}</p>

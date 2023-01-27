@@ -56,7 +56,7 @@ export default function AddProduct() {
   // console.log(colorArray);
 
   const handleChange = (e) => {
-    console.log(e);
+    // console.log(e);
     const { name, value, files } = e.target;
     if (name === "file") {
       // console.log(files);
@@ -71,6 +71,7 @@ export default function AddProduct() {
     const timeStamp = Date.now();
     uploadImage(file) //
       .then((url) => {
+        console.log(url);
         addProduct.mutate(
           { product, url, timeStamp },
           {
@@ -230,7 +231,7 @@ export default function AddProduct() {
               required
             />
             <label className={LABEL_PROPERTY}>
-              Color (체크박스로 리팩토링 예정)
+              Color (서밋했을 때 체크 지워줘야함)
             </label>
             <div className={INPUT_PROPERTY}>
               <input

@@ -26,11 +26,15 @@ export async function uploadImage(files) {
     formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET);
 
     // 리턴을 걸면 값이 왜 하나만 넘어갈까...
-    fetch(url, {
+    await fetch(url, {
       method: "POST",
       body: formData,
     })
       .then((response) => response.json())
-      .then((data) => data.url);
+      .then((data) => {
+        temp.push(data.url);
+        // console.log(temp);
+      });
   }
+  return temp;
 }
