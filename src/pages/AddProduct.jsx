@@ -71,7 +71,7 @@ export default function AddProduct() {
     const timeStamp = Date.now();
     uploadImage(file) //
       .then((url) => {
-        console.log(url);
+        // console.log(url);
         addProduct.mutate(
           { product, url, timeStamp },
           {
@@ -93,7 +93,7 @@ export default function AddProduct() {
     setFile();
   };
 
-  console.log(file);
+  // console.log(file);
   // console.log(typeof file);
   // console.log(Object.assign({}, file));
 

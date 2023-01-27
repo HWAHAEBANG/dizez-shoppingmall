@@ -43,7 +43,7 @@ export default function ProductCard({
     localStorage.setItem(`heartKey${id}`, JSON.stringify(heart));
   }, [heart]);
 
-  console.log(typeof image);
+  // console.log(typeof image);
 
   return (
     <div className='p-3 font-["Raleway"]'>
