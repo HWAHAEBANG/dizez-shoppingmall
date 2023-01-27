@@ -3,6 +3,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import Popup from "./components/Popup";
 import RecentlyViewed from "./components/RecentlyViewed";
 import { AuthContextProvider } from "./context/AuthContext";
 
@@ -12,6 +13,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
+        <Popup />
         <Navbar />
         <Outlet />
         <Footer />
