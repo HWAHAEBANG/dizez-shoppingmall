@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 import { Outlet } from "react-router-dom";
+import BackToTop from "./components/BackToTop";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Popup from "./components/Popup";
@@ -18,6 +19,7 @@ export default function App() {
         <Outlet />
         <Footer />
         <RecentlyViewed />
+        <BackToTop />
       </AuthContextProvider>
     </QueryClientProvider>
   );
