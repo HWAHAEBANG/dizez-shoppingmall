@@ -24,6 +24,34 @@ export default function ProductDetail() {
 
   const { addOrUpdateCartItem } = useCart();
 
+  // let recentlyViewed = [];
+
+  useEffect(() => {
+    // let b = JSON.parse(a);
+    if (JSON.parse(localStorage.getItem("viewedKey")) !== null) {
+      let arr = JSON.parse(localStorage.getItem("viewedKey"));
+      //console.log(arr.includes(product)); 이게 왜 반대로 나오지...?
+      console.log(arr);
+      if (arr.includes(product)) {
+        arr.unshift(product);
+        console.log(arr);
+        localStorage.setItem("viewedKey", JSON.stringify(arr));
+      }
+    } else {
+      localStorage.setItem("viewedKey", JSON.stringify([product]));
+      let arr = JSON.parse(localStorage.getItem("viewedKey"));
+      console.log(arr);
+    }
+
+    // recentlyViewed.unshift(product);
+    // if (recentlyViewed.length >= 5) {
+    //   recentlyViewed.pop();
+    // }
+    // console.log(recentlyViewed);
+  }, []);
+  // localStorage.getItem('데이터이름');
+  // localStorage.setItem(`heartKey${id}`, JSON.stringify(heart));
+
   const handleSubmit = () => {
     if (!selectedSize && !selectedColor) {
       alert.error("사이즈와 색상을 선택하세요");
@@ -54,7 +82,7 @@ export default function ProductDetail() {
     }
   };
 
-  console.log(image);
+  // console.log(image);
   // console.log(test);
   // const {
   //   dibbsQuery: { data: dibbsProducts },
@@ -69,23 +97,28 @@ export default function ProductDetail() {
           ))} */}
         {/* {image && <img className='h-full' src={image[0]} alt='local file' />} */}
         <div className=' h-auto flex justify-center'>
-          {image && <img className=' h-128' src={mainImage} alt='local file' />}
+          {image && image && typeof image === "object" ? (
+            <img className=' h-128' src={mainImage} alt='local file' />
+          ) : (
+            <img className=' h-128' src={image} alt='local file' />
+          )}
         </div>
         <div className='h-1/4 flex items-center justify-center'>
-          {image &&
-            image
-              // .slice(1)
-              .map((item, index) => (
-                <img
-                  key={index}
-                  className='h-40 w-28 py-4 px-2'
-                  src={item}
-                  alt='local file'
-                  onClick={() => {
-                    setMainImage(item);
-                  }}
-                />
-              ))}
+          {image && typeof image === "object"
+            ? image
+                // .slice(1)
+                .map((item, index) => (
+                  <img
+                    key={index}
+                    className='h-40 w-28 py-4 px-2'
+                    src={item}
+                    alt='local file'
+                    onClick={() => {
+                      setMainImage(item);
+                    }}
+                  />
+                ))
+            : ""}
         </div>
       </section>
       <section className='pt-10 pl-28 flex flex-col gap-4 basis-1/2'>
