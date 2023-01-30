@@ -234,6 +234,7 @@ export default function AddProduct() {
               Color (서밋했을 때 체크 지워줘야함)
             </label>
             <div className={INPUT_PROPERTY}>
+              {/* required을 못거는 문제가 있음 */}
               <input
                 type='checkBox'
                 id='black'

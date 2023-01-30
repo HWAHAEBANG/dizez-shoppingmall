@@ -23,14 +23,14 @@ export default function RecentlyViewed() {
     } else {
       return;
     }
-  }, [clicked]);
+  }, [clicked, visible]);
 
   // console.log(viewed);
 
   return (
     <div className='fixed top-1/3 right-5 '>
       <div
-        className='absolute -top-10 right-0 w-8 h-8 flex justify-center items-center border rounded-full bg-slate-200'
+        className='absolute -top-10 right-0 w-8 h-8 flex justify-center items-center border rounded-full bg-slate-200 cursor-pointer'
         onClick={handleClick}
       >
         {visible ? <RxCross2 /> : <FaRegEye />}

@@ -104,3 +104,22 @@ export async function getDibbs(userId) {
       return Object.values(items);
     });
 }
+
+export async function getOnlyBest() {
+  return get(ref(database, `products`)) //
+    .then((snapshot) => {
+      // console.log(snapshot);
+      const items = snapshot.val() || {};
+      return Object.values(items);
+    });
+}
+
+// 사실 위랑 똑같음 걍 쓰지머
+export async function getOnlyNew() {
+  return get(ref(database, `products`)) //
+    .then((snapshot) => {
+      // console.log(snapshot);
+      const items = snapshot.val() || {};
+      return Object.values(items);
+    });
+}

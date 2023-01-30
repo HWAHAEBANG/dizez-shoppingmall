@@ -121,7 +121,7 @@ export default function ProductDetail() {
                 .map((item, index) => (
                   <img
                     key={index}
-                    className='h-40 w-28 py-4 px-2'
+                    className='h-40 w-28 py-4 px-2 cursor-pointer'
                     src={item}
                     alt='local file'
                     onClick={() => {
@@ -156,8 +156,8 @@ export default function ProductDetail() {
               key={index}
               className={
                 selectedSize === item
-                  ? "text-center leading-7 text-sm border w-12  h-8 bg-black text-white"
-                  : "text-center leading-7 text-sm border w-12  h-8"
+                  ? "text-center leading-7 text-sm border w-12  h-8 bg-black text-white cursor-pointer"
+                  : "text-center leading-7 text-sm border w-12  h-8 cursor-pointer"
               }
               onClick={() => setSelectedSize(item)}
             >
@@ -167,18 +167,19 @@ export default function ProductDetail() {
         </div>
         <div className='text-xl flex gap-2 items-center'>
           <span className='mr-10'>COLOR</span>
-          {color.map((item, index) => (
-            <div
-              key={index}
-              className={
-                // 색상이 첫 번째 것만 표시되는 버그가 있음!
-                selectedColor === item
-                  ? `w-8 h-8 border rounded-full bg-${item}-600`
-                  : `w-6 h-6 border rounded-full bg-${item}-600`
-              }
-              onClick={() => setSelectedColor(item)}
-            ></div>
-          ))}
+          {color &&
+            color.map((item, index) => (
+              <div
+                key={index}
+                className={
+                  // 색상이 첫 번째 것만 표시되는 버그가 있음!
+                  selectedColor === item
+                    ? `w-8 h-8 border rounded-full bg-${item}-600 cursor-pointer`
+                    : `w-6 h-6 border rounded-full bg-${item}-600 cursor-pointer`
+                }
+                onClick={() => setSelectedColor(item)}
+              ></div>
+            ))}
         </div>
         <div className='flex gap-2 text-xl mb-8'>
           <span className='mr-2'>QUANTITY</span>

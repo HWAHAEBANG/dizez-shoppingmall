@@ -80,7 +80,7 @@ export default function ProductCard({
             alt='product'
           />
         </div>
-        <div className=' p-3'>
+        <div className=' p-3 text-left'>
           <p className='text-xs text-gray-500'>{category}</p>
           <p>{title}</p>
           <p>￦ {price}</p>

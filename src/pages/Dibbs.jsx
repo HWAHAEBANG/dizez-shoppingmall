@@ -16,6 +16,7 @@ export default function Dibbs() {
   } = useQuery(["dibbs", uid || ""], () => getDibbs(uid), {
     enabled: !!uid,
   });
+
   const override: CSSProperties = {
     display: "block",
     margin: "0 auto",
