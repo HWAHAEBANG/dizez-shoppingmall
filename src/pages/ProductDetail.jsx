@@ -16,7 +16,15 @@ export default function ProductDetail() {
   const { id, image, category, title, price, description, size, color, tags } =
     product;
 
-  const [mainImage, setMainImage] = useState(image[0]);
+  //이것도 나중에 원래대로 바꿔도 될 부분. 메인사진 안바뀌는 에러 났던부분
+  const [mainImage, setMainImage] = useState(
+    typeof image === "object" ? image[0] : image
+  );
+
+  useEffect(() => {
+    setMainImage(typeof image === "object" ? image[0] : image);
+  }, [product]);
+  // 에러 여기까지. setMainImage 따로 하나 만드니까 됨
 
   const [selectedSize, setSelectedSize] = useState();
   const [selectedColor, setSelectedColor] = useState();
@@ -26,29 +34,35 @@ export default function ProductDetail() {
 
   // let recentlyViewed = [];
 
-  useEffect(() => {
-    // let b = JSON.parse(a);
-    if (JSON.parse(localStorage.getItem("viewedKey")) !== null) {
-      let arr = JSON.parse(localStorage.getItem("viewedKey"));
-      //console.log(arr.includes(product)); 이게 왜 반대로 나오지...?
-      console.log(arr);
-      if (arr.includes(product)) {
-        arr.unshift(product);
-        console.log(arr);
-        localStorage.setItem("viewedKey", JSON.stringify(arr));
-      }
+  // useEffect(() => {
+  // let b = JSON.parse(a);
+  if (JSON.parse(localStorage.getItem("viewedKey")) !== null) {
+    let arr = JSON.parse(localStorage.getItem("viewedKey"));
+    // console.log(arr);
+    let already = arr.filter((item) => {
+      // console.log(item);
+      return item.id !== product.id;
+    });
+    already.unshift(product);
+    if (already.length >= 6) {
+      already.pop();
+      localStorage.setItem("viewedKey", JSON.stringify(already));
     } else {
-      localStorage.setItem("viewedKey", JSON.stringify([product]));
-      let arr = JSON.parse(localStorage.getItem("viewedKey"));
-      console.log(arr);
+      localStorage.setItem("viewedKey", JSON.stringify(already));
     }
+    // console.log(already);
+  } else {
+    localStorage.setItem("viewedKey", JSON.stringify([product]));
+    // let arr = JSON.parse(localStorage.getItem("viewedKey"));
+    // console.log(arr);
+  }
 
-    // recentlyViewed.unshift(product);
-    // if (recentlyViewed.length >= 5) {
-    //   recentlyViewed.pop();
-    // }
-    // console.log(recentlyViewed);
-  }, []);
+  // recentlyViewed.unshift(product);
+  // if (recentlyViewed.length >= 5) {
+  //   recentlyViewed.pop();
+  // }
+  // console.log(recentlyViewed);
+  // }, []);
   // localStorage.getItem('데이터이름');
   // localStorage.setItem(`heartKey${id}`, JSON.stringify(heart));
 
@@ -97,11 +111,8 @@ export default function ProductDetail() {
           ))} */}
         {/* {image && <img className='h-full' src={image[0]} alt='local file' />} */}
         <div className=' h-auto flex justify-center'>
-          {image && image && typeof image === "object" ? (
-            <img className=' h-128' src={mainImage} alt='local file' />
-          ) : (
-            <img className=' h-128' src={image} alt='local file' />
-          )}
+          <img className=' h-128' src={mainImage} alt='local file' />
+          {/* <img className=' h-128' src={image} alt='local file' /> */}
         </div>
         <div className='h-1/4 flex items-center justify-center'>
           {image && typeof image === "object"
