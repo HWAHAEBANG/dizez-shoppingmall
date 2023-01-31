@@ -32,10 +32,6 @@ export default function ProductDetail() {
 
   const { addOrUpdateCartItem } = useCart();
 
-  // let recentlyViewed = [];
-
-  // useEffect(() => {
-  // let b = JSON.parse(a);
   if (JSON.parse(localStorage.getItem("viewedKey")) !== null) {
     let arr = JSON.parse(localStorage.getItem("viewedKey"));
     // console.log(arr);
@@ -53,18 +49,7 @@ export default function ProductDetail() {
     // console.log(already);
   } else {
     localStorage.setItem("viewedKey", JSON.stringify([product]));
-    // let arr = JSON.parse(localStorage.getItem("viewedKey"));
-    // console.log(arr);
   }
-
-  // recentlyViewed.unshift(product);
-  // if (recentlyViewed.length >= 5) {
-  //   recentlyViewed.pop();
-  // }
-  // console.log(recentlyViewed);
-  // }, []);
-  // localStorage.getItem('데이터이름');
-  // localStorage.setItem(`heartKey${id}`, JSON.stringify(heart));
 
   const handleSubmit = () => {
     if (!selectedSize && !selectedColor) {
@@ -86,13 +71,10 @@ export default function ProductDetail() {
       };
       addOrUpdateCartItem.mutate(product, {
         onSuccess: () => {
-          // setSuccess("장바구니에 추가되었습니다.");
-          // setTimeout(() => setSuccess(null), 3000);
+          const test = "상품을 장바구니에 담았습니다.";
+          alert.success(test);
         },
       });
-
-      const test = "상품을 장바구니에 담았습니다.";
-      alert.success(test);
     }
   };
 
@@ -105,14 +87,8 @@ export default function ProductDetail() {
   return (
     <div className='pt-24 flex p-8 font-["Raleway"] '>
       <section className='basis-1/2'>
-        {/* {image &&
-          image.map((item, index) => (
-            <img src={item} key={index} alt='product' className='w-full' />
-          ))} */}
-        {/* {image && <img className='h-full' src={image[0]} alt='local file' />} */}
         <div className=' h-auto flex justify-center'>
           <img className=' h-128' src={mainImage} alt='local file' />
-          {/* <img className=' h-128' src={image} alt='local file' /> */}
         </div>
         <div className='h-1/4 flex items-center justify-center'>
           {image && typeof image === "object"
@@ -121,7 +97,7 @@ export default function ProductDetail() {
                 .map((item, index) => (
                   <img
                     key={index}
-                    className='h-40 w-28 py-4 px-2 cursor-pointer'
+                    className=' h-36 w-28 py-4 px-2 cursor-pointer'
                     src={item}
                     alt='local file'
                     onClick={() => {
@@ -172,10 +148,20 @@ export default function ProductDetail() {
               <div
                 key={index}
                 className={
-                  // 색상이 첫 번째 것만 표시되는 버그가 있음!
+                  // 색상이 첫 번째 것만 표시되는 버그가 있음! 해결!
                   selectedColor === item
-                    ? `w-8 h-8 border rounded-full bg-${item}-600 cursor-pointer`
-                    : `w-6 h-6 border rounded-full bg-${item}-600 cursor-pointer`
+                    ? `w-8 h-8 border rounded-full bg-${
+                        item === "black" || item === "white"
+                          ? item
+                          : item + "-500"
+                      }
+                      } cursor-pointer`
+                    : `w-6 h-6 border rounded-full bg-${
+                        item === "black" || item === "white"
+                          ? item
+                          : item + "-500"
+                      }
+                      }cursor-pointer`
                 }
                 onClick={() => setSelectedColor(item)}
               ></div>

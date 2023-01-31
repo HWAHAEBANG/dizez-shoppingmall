@@ -63,10 +63,20 @@ export default function AddProduct() {
       setFile(files && Object.values(files));
       return;
     }
-    setProduct((product) => ({ ...product, [name]: value, category: "Men" }));
+    setProduct((product) => ({ ...product, [name]: value }));
   };
 
+  const [mainImage, setMainImage] = useState();
+  // console.log(product);
+
+  // useEffect(() => {
+  //   setMainImage(typeof image === "object" ? image[0] : image);
+  // }, [product]);
+
   const handleSubmit = (e) => {
+    for (let i = 6; i < 15; i++) {
+      console.log(console.log(e.target[i].checked));
+    }
     e.preventDefault();
     const timeStamp = Date.now();
     uploadImage(file) //
@@ -77,6 +87,7 @@ export default function AddProduct() {
           {
             onSuccess: () => {
               alert.success("제품이 등록되었습니다.");
+              window.location.reload();
             },
           }
         );
@@ -93,6 +104,7 @@ export default function AddProduct() {
     setFile();
   };
 
+  console.log(product);
   // console.log(file);
   // console.log(typeof file);
   // console.log(Object.assign({}, file));
@@ -108,32 +120,27 @@ export default function AddProduct() {
               미리보기가 생성됩니다.
             </div>
           )}
-          {/* {file && (
-            <img
-            className=' max-h-screen'
-            src={URL.createObjectURL(file)}
-            alt='local file'
-            />
-          )} */}
-          {/* {file &&
-            file.map((item, index) => <span key={index}>{item.name}</span>)} */}
+
           {file && (
             <img
-              className='h-full'
-              src={URL.createObjectURL(file[0])}
+              className=''
+              src={URL.createObjectURL(mainImage ? mainImage : file[0])}
               alt='local file'
             />
           )}
           <div className='flex'>
             {file &&
               file
-                .slice(1)
+                // .slice(1)
                 .map((item, index) => (
                   <img
                     key={index}
                     className='h-40 w-28 py-4 px-2'
                     src={URL.createObjectURL(item)}
                     alt='local file'
+                    onClick={() => {
+                      setMainImage(item);
+                    }}
                   />
                 ))}
           </div>
@@ -155,25 +162,15 @@ export default function AddProduct() {
               required
             />
             <label htmlFor='category' className={LABEL_PROPERTY}>
-              Category (옵션으로 리팩토링 예정)
+              Category
             </label>
-            {/* <input
-              id='category'
-              className={INPUT_PROPERTY}
-              type='text'
-              value={product.category ?? ""}
-              name='category'
-              onChange={handleChange}
-              placeholder='카테고리를 입력해주세요.'
-              required
-            /> */}
             <select
               className={INPUT_PROPERTY}
               name='category'
               onChange={handleChange}
               required='required'
             >
-              <option value='Men'>Men</option>
+              <option value='men'>Men</option>
               <option value='Women'>Women</option>
               <option value='Accessories'>Accessories</option>
               <option value='Shoes'>Shoes</option>

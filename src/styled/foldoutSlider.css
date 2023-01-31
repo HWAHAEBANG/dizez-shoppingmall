@@ -45,19 +45,9 @@ body {
   /* background-color: aqua; */
 }
 
-.main_1 {
-  /* position: relative; */
-  /* width: 100%; */
-}
-
 .main_2 {
   /* position: absolute; */
   left: 50px;
-}
-
-.main_3 {
-  /* position: relative; */
-  /* width: 50%; */
 }
 
 .text_container_1 {
@@ -141,7 +131,6 @@ body {
 
 .navigation-wrapper {
   position: relative;
-  /* background-color: aquamarine; */
 }
 
 .dots {

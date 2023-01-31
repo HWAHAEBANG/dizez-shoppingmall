@@ -18,12 +18,7 @@ export default function ProductCard({
     }
   });
 
-  // console.log(tags);
-  const {
-    // dibbsQuery: { data: dibbsProducts },
-    removeDibbsItem,
-    addOrUpdateDibbsItem,
-  } = useDibbs(); //
+  const { removeDibbsItem, addOrUpdateDibbsItem } = useDibbs();
 
   const heartOn = () => {
     setHeart((heart) => !heart);
@@ -42,8 +37,6 @@ export default function ProductCard({
   useEffect(() => {
     localStorage.setItem(`heartKey${id}`, JSON.stringify(heart));
   }, [heart]);
-
-  // console.log(typeof image);
 
   return (
     <div className='p-3 font-["Raleway"]'>
@@ -72,7 +65,7 @@ export default function ProductCard({
         )}
       </div>
       <div onClick={enter}>
-        <div className='w-90 h-96 overflow-hidden'>
+        <div className='w-90h h-80 overflow-hidden'>
           <img
             className=' w-90'
             src={typeof image === "object" ? image[0] : image}

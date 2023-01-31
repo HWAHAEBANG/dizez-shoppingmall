@@ -5,7 +5,7 @@ import MainButton from "./ui/MainButton";
 
 export default function Promotion() {
   return (
-    <div className='relative mt-32  text-shadow sm:text-shadow-sm md:text-shadow-md lg:text-shadow-lg xl:text-shadow-xl'>
+    <div className='relative mt-24  text-shadow sm:text-shadow-sm md:text-shadow-md lg:text-shadow-lg xl:text-shadow-xl'>
       <img
         className='w-full'
         src='./image/main/promotion_1.webp'

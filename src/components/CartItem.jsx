@@ -12,7 +12,7 @@ export default function CartItem({
     price,
     selectedColor,
     selectedQuantity,
-    // selectedSize,
+    selectedSize,
     title,
   },
 }) {
@@ -26,7 +26,7 @@ export default function CartItem({
           <img src={image} alt='product' className='w-20' />
         </div>
         <div className='basis-4/12  pl-4'>
-          <p>{`${title} (${selectedColor})`}</p>
+          <p>{`${title} (${selectedColor + " / " + selectedSize})`}</p>
           <p className='text-sm text-gray-500'>{category}</p>
         </div>
         <div className='basis-2/12'>￦{price}</div>

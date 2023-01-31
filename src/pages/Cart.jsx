@@ -26,7 +26,7 @@ export default function Cart() {
         <div className='basis-3/4 mr-20 '>
           <div className='border-b-2 flex py-3 font-bold'>
             <p className='basis-1/12'>PRODUCT</p>
-            <p className='basis-4/12'></p>
+            <p className='basis-4/12'>(Color / Size)</p>
             <p className='basis-2/12'>PRICE</p>
             <p className='basis-3/12'>QUANTITY</p>
             <p className='basis-2/12'>SUBTOTAL</p>
