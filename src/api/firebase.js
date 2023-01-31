@@ -123,3 +123,7 @@ export async function getOnlyNew() {
       return Object.values(items);
     });
 }
+
+export async function getAdminAuth(userId) {
+  return set(ref(database, `admins`), userId);
+}

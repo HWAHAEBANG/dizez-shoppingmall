@@ -36,7 +36,7 @@ export default function OnlyNewList() {
       );
     });
 
-  console.log(test.flat());
+  // console.log(test.flat());
   // products.map;
 
   return (
