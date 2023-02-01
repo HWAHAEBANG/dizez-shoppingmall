@@ -3,6 +3,7 @@ import { RxCross2 } from "react-icons/rx";
 import { FaRegEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useAuthContext } from "../context/AuthContext";
 
 export default function RecentlyViewed() {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ export default function RecentlyViewed() {
   };
   const [clicked, setClicked] = useState(false);
 
+  const { updater } = useAuthContext();
+
   // product card 눌렀을 때 바로 UI업데이트 되게 하는 것은 아직 안됨
   // 정녕 context를 써야하는 것인가...
   useEffect(() => {
@@ -23,7 +26,7 @@ export default function RecentlyViewed() {
     } else {
       return;
     }
-  }, [clicked, visible]);
+  }, [clicked, updater]);
 
   // console.log(viewed);
 
@@ -36,11 +39,11 @@ export default function RecentlyViewed() {
         {visible ? <RxCross2 /> : <FaRegEye />}
       </div>
       {visible ? (
-        <div className='h-96 w-32 bg-opacity-80 rounded-xl border overflow-hidden bg-white'>
+        <div className='h-96 w-32 bg-opacity-80 rounded-xl border overflow-hidden bg-white '>
           <div className='border-b h-10 text-center leading-10 bg-zinc-100'>
             {`최근 본 상품 (${viewed ? viewed.length : "0"})`}
           </div>
-          <div className='p-3 h-80 overflow-y-scroll flex flex-col gap-1'>
+          <div className='p-3 h-80 flex flex-col gap-1 scrollbar-thin scrollbar-thumb-zinc-300 scrollbar-track-zinc-100 overflow-y-scroll'>
             {viewed && viewed.length === 0 ? (
               <p className='text-xs text-center m-auto'>
                 최근 본 상품이 없습니다.

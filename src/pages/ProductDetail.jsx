@@ -5,9 +5,15 @@ import MainButton from "../components/ui/MainButton";
 import useCart from "../hooks/useCart";
 // import useDibbs from "../hooks/useDibbs";
 import { useAlert, transitions } from "react-alert";
+import { useAuthContext } from "../context/AuthContext";
 
 export default function ProductDetail() {
   const alert = useAlert();
+  const { setUpdater } = useAuthContext();
+
+  useEffect(() => {
+    setUpdater((prev) => !prev);
+  }, []);
 
   const {
     state: { product },

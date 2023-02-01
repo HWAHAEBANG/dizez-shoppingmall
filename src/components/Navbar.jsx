@@ -32,17 +32,17 @@ export default function Navbar() {
   };
 
   return (
-    <div className='relative'>
+    <div className='fixed z-20'>
       {!user && (
-        <div className='fixed right-52 top-20 z-20  p-5 rounded-2xl text-red-500'>
-          <ImArrowUpRight className='absolute right-10 -top-2' />
+        <div className='fixed right-52 top-24 z-20  px-5 py-2 rounded-sm text-zinc-800 text-center bg-black bg-opacity-10'>
+          <ImArrowUpRight className='absolute right-10 -top-7 text-xl' />
           <p>로그인을 하시면 찜하기, 장바구니 기능을 이용하실 수 있습니다.</p>
           <p>Google 계정으로 간편하게 로그인이 가능합니다.</p>
         </div>
       )}
       {user && !user.isAdmin && (
-        <div className='fixed right-52 top-20 z-20  p-5 rounded-2xl text-red-500'>
-          <ImArrowUpLeft className='absolute left-10 -top-2' />
+        <div className='fixed right-52 top-24 z-20  px-5 py-2 rounded-sm text-zinc-800 text-center bg-black bg-opacity-10'>
+          <ImArrowUpLeft className='absolute left-10 -top-7 text-xl' />
           <p>버튼을 눌러 관리자 권한을 받으시면</p>
           <p>새 제품 등록, 제품 정보 변경이 가능합니다.</p>
         </div>
@@ -96,12 +96,15 @@ export default function Navbar() {
               </Link>
             )}
             {user && !user.isAdmin && (
-              <button
-                className='text-sm mx-5 bg-red-700 text-white px-3 h-7 rounded-lg hover:brightness-200 w-36'
-                onClick={getAuthority}
-              >
-                관리자 권한 받기
-              </button>
+              <div className='relative w-36 h-7 mx-5'>
+                <button
+                  className='z-30 absolute text-sm mx-5 bg-red-700 text-white px-3 h-7 rounded-lg hover:brightness-200 w-36'
+                  onClick={getAuthority}
+                >
+                  관리자 권한 받기
+                </button>
+                <div className='absolute w-36 h-7 mx-5 bg-red-700 rounded-lg animate-ping-slow'></div>
+              </div>
             )}
             {user && (
               <div className='mx-5 shrink-0'>
@@ -115,9 +118,15 @@ export default function Navbar() {
               </button>
             )}
             {!user && (
-              <button className='mx-5' onClick={handleLogin}>
-                Login
-              </button>
+              <div className='relative'>
+                <button
+                  className='mx-5 animate-ping-slow absolute'
+                  onClick={handleLogin}
+                >
+                  Login
+                </button>
+                <button className='mx-5'>Login</button>
+              </div>
             )}
           </div>
         </section>

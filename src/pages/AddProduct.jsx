@@ -9,14 +9,16 @@ import MainButton from "../components/ui/MainButton";
 import useProducts from "../hooks/userProducts";
 import { useAlert } from "react-alert";
 import { FaObjectUngroup } from "react-icons/fa";
+import ClipLoader from "react-spinners/ClipLoader";
+import { ReactComponent as Reservation } from "../loading.svg";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const INPUT_PROPERTY =
-  "bg-zinc-100 x-2 h-12 p-2 rounded-sm mb-5 border flex items-center";
+  "bg-zinc-100 x-2 h-12 p-2 rounded-sm mb-5 border flex items-center outline-none";
 const LABEL_PROPERTY = "w-96 mb-2";
 export default function AddProduct() {
   const [tags, setTags] = useState({ new: false, best: false });
   const [colorArray, setColorArray] = useState([]);
-  // const [success, setSuccess] = useState(false);
   const [product, setProduct] = useState({
     category: "",
     title: "",
@@ -27,6 +29,8 @@ export default function AddProduct() {
   });
   const [file, setFile] = useState();
   const { addProduct } = useProducts();
+  const [isLoading, setIsLoading] = useState(false);
+
   const alert = useAlert();
 
   const handleTags = (e) => {
@@ -56,11 +60,21 @@ export default function AddProduct() {
   // console.log(colorArray);
 
   const handleChange = (e) => {
-    // console.log(e);
+    // console.log(e.target.value.length);
+    // 하 파일선택 다시 들어갔다가 나올 때, 뻑하는 오류 잡음.
+    // 빈 문자열이 받아와지면서 나는 에러이므로, 조건문에서 렝쓰가 0일때 걸러준다..
     const { name, value, files } = e.target;
-    if (name === "file") {
-      // console.log(files);
-      setFile(files && Object.values(files));
+    if (value.length !== 0 && name && name === "file") {
+      if (files.length > 5) {
+        setFile(
+          Object.assign(
+            {},
+            Object.entries(files)
+              .slice(0, 5)
+              .map((entry) => entry[1])
+          )
+        );
+      } else setFile(files && Object.values(files));
       return;
     }
     setProduct((product) => ({ ...product, [name]: value }));
@@ -74,37 +88,55 @@ export default function AddProduct() {
   // }, [product]);
 
   const handleSubmit = (e) => {
-    for (let i = 6; i < 15; i++) {
-      console.log(console.log(e.target[i].checked));
-    }
     e.preventDefault();
-    const timeStamp = Date.now();
-    uploadImage(file) //
-      .then((url) => {
-        // console.log(url);
-        addProduct.mutate(
-          { product, url, timeStamp },
-          {
-            onSuccess: () => {
-              alert.success("제품이 등록되었습니다.");
-              window.location.reload();
-            },
-          }
-        );
-      });
-    setProduct({
-      category: "",
-      title: "",
-      price: "",
-      description: "",
-      size: "",
-      color: [],
-      tags: {},
-    });
-    setFile();
+    setIsLoading(true);
+    let colorNullCheck = [];
+    for (let i = 6; i < 15; i++) {
+      // 모두 false면 alert
+      colorNullCheck.push(e.target[i].checked);
+    }
+    // console.log(colorNullCheck);
+    if (product.category === "" || product.category === "unselected") {
+      alert.error("카테고리를 선택해주세요.");
+    } else {
+      if (!colorNullCheck.includes(true)) {
+        alert.error("색상을 선택해주세요.");
+      } else {
+        //여기에 식
+        alert.info("업로드 중입니다. 잠시만 기다려주세요.");
+        setTimeout(() => {
+          alert.info("용량이 커서 시간이 조금 걸리네요 😅");
+        }, 7000);
+        const timeStamp = Date.now();
+        uploadImage(file) //
+          .then((url) => {
+            // console.log(url);
+            addProduct.mutate(
+              { product, url, timeStamp },
+              {
+                onSuccess: () => {
+                  setIsLoading(false);
+                  alert.success("제품이 등록되었습니다.");
+                  window.location.reload();
+                },
+              }
+            );
+          });
+        setProduct({
+          category: "",
+          title: "",
+          price: "",
+          description: "",
+          size: "",
+          color: [],
+          tags: {},
+        });
+        setFile();
+      }
+    }
   };
 
-  console.log(product);
+  // console.log(product);
   // console.log(file);
   // console.log(typeof file);
   // console.log(Object.assign({}, file));
@@ -113,7 +145,7 @@ export default function AddProduct() {
     <>
       <Banner title='Register a New Product' subTitle='새 제품 등록하기' />
       <div className=' flex m-10 font-["Raleway"]'>
-        <section className='basis-1/2 flex flex-col justify-center items-center'>
+        <section className='basis-1/2 flex flex-col justify-center items-center '>
           {!file && (
             <div className='h-full w-full flex justify-center items-center bg-gray-50 text-gray-600 text-center'>
               사진을 첨부하시면 <br />
@@ -148,7 +180,7 @@ export default function AddProduct() {
         <section className='basis-1/2 px-20'>
           <form className='flex flex-col' onSubmit={handleSubmit}>
             <label htmlFor='file' className={LABEL_PROPERTY}>
-              Product Image (여러장 업로드로 리팩토링 예정)
+              Product Image (최대 5장까지 업로드 가능)
             </label>
             {/* 업로드 완류 후 파일 이름 남는 현상 해결 요망 */}
             <input
@@ -170,7 +202,8 @@ export default function AddProduct() {
               onChange={handleChange}
               required='required'
             >
-              <option value='men'>Men</option>
+              <option value='unselected'>카테고리를 선택해주세요.</option>
+              <option value='Men'>Men</option>
               <option value='Women'>Women</option>
               <option value='Accessories'>Accessories</option>
               <option value='Shoes'>Shoes</option>
@@ -198,6 +231,7 @@ export default function AddProduct() {
               value={product.price ?? ""}
               name='price'
               onChange={handleChange}
+              onWheel={(e) => e.target.blur()}
               placeholder='가격을 입력해주세요.'
               required
             />
@@ -227,9 +261,7 @@ export default function AddProduct() {
               placeholder='사이즈 종류를 ",(콤마)"로 구분하여 입력해주세요.'
               required
             />
-            <label className={LABEL_PROPERTY}>
-              Color (서밋했을 때 체크 지워줘야함)
-            </label>
+            <label className={LABEL_PROPERTY}>Color</label>
             <div className={INPUT_PROPERTY}>
               {/* required을 못거는 문제가 있음 */}
               <input
@@ -318,13 +350,19 @@ export default function AddProduct() {
                 BEST
               </label>
             </div>
-            <MainButton
-              text='Upload'
-              bgcolor='black'
-              color='white'
-              onSubmit={handleSubmit}
-              length='full'
-            />
+            {isLoading ? (
+              <div className=' h-20 w-20  animate-spin mx-auto'>
+                <Reservation className='h-full w-full ' />
+              </div>
+            ) : (
+              <MainButton
+                text='Upload'
+                bgcolor='black'
+                color='white'
+                onSubmit={handleSubmit}
+                length='full'
+              />
+            )}
           </form>
           {/* {success && <p className='my-2'>✅{success}</p>} */}
         </section>

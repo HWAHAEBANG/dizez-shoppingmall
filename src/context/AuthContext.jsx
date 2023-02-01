@@ -18,9 +18,19 @@ export function AuthContextProvider({ children }) {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
+  const [updater, setUpdater] = useState(false);
+  console.log(updater);
+
   return (
     <AuthContext.Provider
-      value={{ user, uid: user && user.uid, login: login, logout: logout }}
+      value={{
+        user,
+        uid: user && user.uid,
+        login: login,
+        logout: logout,
+        updater,
+        setUpdater,
+      }}
     >
       {children}
     </AuthContext.Provider>

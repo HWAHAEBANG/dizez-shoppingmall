@@ -3,6 +3,7 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import "../styled/foldoutSlider.css";
 import MainButton from "./ui/MainButton";
+// import { ReactComponent as Reservation } from "./assets/loading.svg";
 
 export default function FoldoutSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
