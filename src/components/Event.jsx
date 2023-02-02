@@ -1,11 +1,11 @@
 import React from "react";
 import MainButton from "./ui/MainButton";
 
-export default function Event() {
+export default function Event({ comeFromBlog }) {
   return (
     <div className='w-3/4 m-auto font-["Raleway"] flex flex-col items-center mb-16'>
       <div className='flex flex-col gap-4 mb-7 items-center'>
-        <p>OURBLOG</p>
+        <p>Head Designer</p>
         <p className='text-4xl font-bold'>The Last In DI:ZEZ</p>
         <p className='text-center'>
           Haec pagina tantum temptat.
@@ -43,7 +43,9 @@ export default function Event() {
           </div>
         </div>
       </div>
-      <MainButton text='Read Blog' bgcolor='black' color='white' />
+      {!comeFromBlog && (
+        <MainButton text='Read Blog' bgcolor='black' color='white' />
+      )}
     </div>
   );
 }

@@ -68,8 +68,8 @@ export default function Navbar() {
               Shop
               <IoIosArrowDown className='text-sm mt-2 ml-1' />
             </Link>
-            <span>Blog</span>
-            <span>Contact</span>
+            <Link to='/blog'>Blog</Link>
+            <Link to='/contact'>Contact</Link>
           </div>
           <div className='mx-10 flex gat-6 text-lg'>
             <div className='flex gap-7 mx-5'>

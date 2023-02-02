@@ -53,13 +53,7 @@ export default function ShopForm({ category }) {
   };
   let [color, setColor] = useState("#ffffff");
   return (
-    <div className='pt-14 font-["Raleway"]'>
-      <Banner
-        title={"Newest Men Clothing"}
-        subTitle={
-          "Casual linen. Shirt design. 100% suede leather. Backstitch elbow patch"
-        }
-      />
+    <div className='font-["Raleway"]'>
       <SortBar products={products} onSelected={handleSelected} />
       {isLoading && (
         <div className='h-screen pt-52'>

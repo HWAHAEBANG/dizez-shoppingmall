@@ -33,17 +33,17 @@ export default function RecentlyViewed() {
   return (
     <div className='fixed top-1/3 right-5 '>
       <div
-        className='absolute -top-10 right-0 w-8 h-8 flex justify-center items-center border rounded-full bg-slate-200 cursor-pointer'
+        className='absolute -top-10 right-0 w-8 h-8 flex justify-center items-center border rounded-full bg-slate-100 cursor-pointer'
         onClick={handleClick}
       >
         {visible ? <RxCross2 /> : <FaRegEye />}
       </div>
       {visible ? (
         <div className='h-96 w-32 bg-opacity-80 rounded-xl border overflow-hidden bg-white '>
-          <div className='border-b h-10 text-center leading-10 bg-zinc-100'>
+          <div className='border-b h-10 text-center text-sm leading-10 bg-zinc-100'>
             {`최근 본 상품 (${viewed ? viewed.length : "0"})`}
           </div>
-          <div className='p-3 h-80 flex flex-col gap-1 scrollbar-thin scrollbar-thumb-zinc-300 scrollbar-track-zinc-100 overflow-y-scroll'>
+          <div className='p-3 pr-5 h-80 flex flex-col gap-1 scrollbar-thin scrollbar-thumb-zinc-300 scrollbar-track-zinc-100 overflow-y-scroll'>
             {viewed && viewed.length === 0 ? (
               <p className='text-xs text-center m-auto'>
                 최근 본 상품이 없습니다.

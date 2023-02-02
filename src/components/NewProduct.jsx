@@ -90,6 +90,19 @@ export default function NewProduct() {
                 <div className='ml-2 cursor-pointer'>Shop Now</div>
               </div>
             </div>
+            <div className='absolute -bottom-32 -left-24 text-right'>
+              <p className='text-5xl mb-4 font-bold'>FESTIVAL</p>
+              <p className='text-8xl font-bold mb-9'>Alexandra</p>
+              <span className='text-2xl'>
+                Non aliqua reprehenderit <br />
+                reprehenderit culpa laboris nulla <br />
+                Haec pagina tantum temptat. <br />
+                Intellige quaeso quod non operatur nisi propter pauca munera.
+              </span>
+              <div className='flex items-center hover:translate-x-10 duration-500 mt-10'>
+                <div className='h-0.5 w-6 bg-white'></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 import Countdown from "react-countdown";
 import MainButton from "./ui/MainButton";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Popup() {
   const [open, setOpen] = useState(true);
@@ -78,7 +79,9 @@ export default function Popup() {
                 &nbsp;&nbsp;&nbsp;days &nbsp;&nbsp;&nbsp; hours
                 &nbsp;&nbsp;&nbsp; mins &nbsp;&nbsp;&nbsp; sec
               </p>
-              <MainButton text='Shop Now' bgcolor='white' color='black' />
+              <Link to='/shop/women'>
+                <MainButton text='Shop Now' bgcolor='white' color='black' />
+              </Link>
             </div>
             <div className='absolute bottom-0 left-0'>
               <input
