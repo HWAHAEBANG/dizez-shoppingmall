@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import MainButton from "./ui/MainButton";
 
 export default function Event({ comeFromBlog }) {
@@ -44,7 +45,9 @@ export default function Event({ comeFromBlog }) {
         </div>
       </div>
       {!comeFromBlog && (
-        <MainButton text='Read Blog' bgcolor='black' color='white' />
+        <Link to='/blog'>
+          <MainButton text='Read Blog' bgcolor='black' color='white' />
+        </Link>
       )}
     </div>
   );

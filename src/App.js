@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Popup from "./components/Popup";
 import RecentlyViewed from "./components/RecentlyViewed";
+import ScrollToTop from "./components/ScrollToTop";
 import { AuthContextProvider } from "./context/AuthContext";
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
+        <ScrollToTop />
         <Navbar />
         <Outlet />
         <Footer />

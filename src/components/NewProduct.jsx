@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import MainButton from "./ui/MainButton";
 
 export default function NewProduct() {
@@ -26,7 +27,9 @@ export default function NewProduct() {
               </p>
               <div className='flex items-center hover:translate-x-10 duration-500 '>
                 <div className='h-0.5 w-6 bg-black'></div>
-                <div className='ml-2 cursor-pointer'>Shop Now</div>
+                <Link to='/shop/women' className='ml-2 cursor-pointer'>
+                  Shop Now
+                </Link>
               </div>
             </div>
           </div>
@@ -41,7 +44,9 @@ export default function NewProduct() {
               </span>
               <div className='flex items-center hover:translate-x-10 duration-500 mt-10'>
                 <div className='h-0.5 w-6 bg-white'></div>
-                <div className='ml-2 cursor-pointer'>Shop Now</div>
+                <Link to='/shop/women' className='ml-2 cursor-pointer'>
+                  Shop Now
+                </Link>
               </div>
             </div>
           </div>
@@ -63,7 +68,9 @@ export default function NewProduct() {
               </p>
               <div className='flex items-center hover:translate-x-10 duration-500'>
                 <div className='h-0.5 w-6 bg-black'></div>
-                <div className='ml-2 cursor-pointer'>Shop Now</div>
+                <Link to='/shop/women' className='ml-2 cursor-pointer'>
+                  Shop Now
+                </Link>
               </div>
             </div>
           </div>
@@ -87,7 +94,9 @@ export default function NewProduct() {
               </p>
               <div className='flex items-center hover:translate-x-10 duration-500'>
                 <div className='h-0.5 w-6 bg-black'></div>
-                <div className='ml-2 cursor-pointer'>Shop Now</div>
+                <Link to='/shop/acc' className='ml-2 cursor-pointer'>
+                  Shop Now
+                </Link>
               </div>
             </div>
             <div className='absolute -bottom-32 -left-24 text-right'>
