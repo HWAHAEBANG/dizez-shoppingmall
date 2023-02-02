@@ -4,7 +4,7 @@ import MainButton from "./ui/MainButton";
 
 export default function NewProduct() {
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex-col items-center hidden lg:flex'>
       <div className='flex w-4/5 m-auto pt-32 relative gap-60 font-["Raleway"] mb-20'>
         <div className='absolute flex flex-col items-center left-32 top-52 text-zinc-800'>
           <p className='text-7xl font-semibold'>2587 +</p>
@@ -35,9 +35,11 @@ export default function NewProduct() {
           </div>
           <div className=' relative h-1/2 mt-20'>
             <img className='' src='./image/main/adv_4.jpg' alt='' />
-            <div className='text-white absolute top-28 left-20'>
-              <p className='text-5xl mb-4 font-bold'>S E A S I O N</p>
-              <p className='text-9xl font-bold mb-9'>SALE</p>
+            <div className='text-white absolute top-28 left-12'>
+              <p className='text-2xl xl:text-5xl mb-4 font-bold'>
+                S E A S I O N
+              </p>
+              <p className='text-7xl xl:text-9xl font-bold mb-9'>SALE</p>
               <span className='text-2xl'>
                 Non aliqua reprehenderit <br />
                 reprehenderit culpa laboris nulla
@@ -100,8 +102,8 @@ export default function NewProduct() {
               </div>
             </div>
             <div className='absolute -bottom-32 -left-24 text-right'>
-              <p className='text-5xl mb-4 font-bold'>FESTIVAL</p>
-              <p className='text-8xl font-bold mb-9'>Alexandra</p>
+              <p className='text-2xl xl:text-5xl mb-4 font-bold'>FESTIVAL</p>
+              <p className='text-6xl xl:text-8xl font-bold mb-9'>Alexandra</p>
               <span className='text-2xl'>
                 Non aliqua reprehenderit <br />
                 reprehenderit culpa laboris nulla <br />

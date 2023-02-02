@@ -184,3 +184,84 @@ body {
 .arrow--disabled {
   fill: rgba(255, 255, 255, 0.5);
 }
+
+@media (min-width: 320px) and (max-width: 768px) {
+  .text_container_1 {
+    position: absolute;
+    top: 50px;
+    left: -70px;
+  }
+
+  .text_container_1 p {
+    color: #222222;
+  }
+
+  .text_container_1 p:nth-child(2) {
+    margin-bottom: 70px;
+  }
+
+  .text_container_2 p {
+    color: white;
+  }
+
+  .text_container_2 p:nth-child(2) {
+    margin-bottom: 70px;
+  }
+
+  .text_container_3 p {
+    color: #222222;
+  }
+
+  .text_container_3 p:nth-child(2) {
+    margin-bottom: 70px;
+  }
+
+  .text_container_2 {
+    position: absolute;
+    top: 40px;
+    left: -50px;
+  }
+
+  .text_container_3 {
+    position: absolute;
+    top: 30px;
+    left: -25px;
+    color: #222222;
+  }
+
+  .subTitle {
+    font-size: 10px;
+    font-family: "Raleway", sans-serif;
+    margin-bottom: 10px;
+  }
+
+  .subTitle span {
+    font-weight: 700;
+  }
+
+  .title {
+    font-size: 30px;
+    font-weight: 700;
+    font-family: "Raleway", sans-serif;
+    line-height: 30px;
+  }
+
+  .goToShop {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    font-family: "Raleway", sans-serif;
+    margin-top: 50px;
+    position: relative;
+  }
+
+  .goToShop::after {
+    content: "";
+    background-color: black;
+    width: 3px;
+    height: 44px;
+    top: 0;
+    right: -5px;
+    position: absolute;
+  }
+}

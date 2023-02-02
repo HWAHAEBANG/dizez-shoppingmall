@@ -56,7 +56,7 @@ export default function Popup() {
               : "hidden"
           }
         >
-          <div className='relative w-96 h-auto rounded-tl-3xl rounded-br-3xl overflow-hidden drop-shadow-2xl'>
+          <div className='relative w-80 xl:w-96 h-auto rounded-tl-3xl rounded-br-3xl overflow-hidden drop-shadow-2xl'>
             <RiCloseLine
               className='absolute top-3 right-3 w-5 h-5 cursor-pointer'
               onClick={handleClose}
@@ -66,7 +66,7 @@ export default function Popup() {
               <p className='text-xl mb-4  text-white'>
                 <span className='font-bold'>DEAL</span> OF THE WEEK
               </p>
-              <p className='text-5xl  mb-48  text-white'>
+              <p className='text-5xl mb-32  xl:mb-48  text-white'>
                 Time Sale
                 <br />
                 Olny

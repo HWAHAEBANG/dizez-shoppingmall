@@ -23,7 +23,7 @@ export default function CartItem({
     <div className='my-6'>
       <div className='flex items-center my-3'>
         <div className='basis-1/12'>
-          <img src={image} alt='product' className='w-20' />
+          <img src={image[0]} alt='product' className='w-20' />
         </div>
         <div className='basis-4/12  pl-4'>
           <p>{`${title} (${selectedColor + " / " + selectedSize})`}</p>

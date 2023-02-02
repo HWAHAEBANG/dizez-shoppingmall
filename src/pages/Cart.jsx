@@ -22,7 +22,7 @@ export default function Cart() {
   return (
     <div className='pt-14'>
       <Banner title='Shopping Cart' />
-      <section className='flex justify-center py-12 px-5'>
+      <section className='flex flex-col lg:flex-row justify-center py-12 px-5'>
         <div className='basis-3/4 mr-20 '>
           <div className='border-b-2 flex py-3 font-bold'>
             <p className='basis-1/12'>PRODUCT</p>

@@ -40,7 +40,7 @@ export default function OnlyNewList() {
   // products.map;
 
   return (
-    <div className=' mt-32'>
+    <div className='hidden xl:block mt-32'>
       <div className='flex flex-col items-center justify-center h-56 font-["Raleway"]'>
         <p className='text-xl mb-7'>
           <span className='font-bold'>N E W &nbsp; </span> C O L L E C T I O N S

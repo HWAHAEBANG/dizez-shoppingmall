@@ -15,7 +15,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const INPUT_PROPERTY =
   "bg-zinc-100 x-2 h-12 p-2 rounded-sm mb-5 border flex items-center outline-none";
-const LABEL_PROPERTY = "w-96 mb-2";
+const LABEL_PROPERTY = "w-80 mb-2";
 export default function AddProduct() {
   const [tags, setTags] = useState({ new: false, best: false });
   const [colorArray, setColorArray] = useState([]);
@@ -65,15 +65,25 @@ export default function AddProduct() {
     // 빈 문자열이 받아와지면서 나는 에러이므로, 조건문에서 렝쓰가 0일때 걸러준다..
     const { name, value, files } = e.target;
     if (value.length !== 0 && name && name === "file") {
+      // console.log(files);
       if (files.length > 5) {
         setFile(
           Object.assign(
-            {},
+            [],
             Object.entries(files)
               .slice(0, 5)
               .map((entry) => entry[1])
           )
         );
+        // 업로딩안된다 배열이라그런듯
+        // setFile(
+        //   Object.assign(
+        //     {},
+        //     Object.entries(files)
+        //       .slice(0, 5)
+        //       .map((entry) => entry[1])
+        //   )
+        // );
       } else setFile(files && Object.values(files));
       return;
     }
@@ -107,6 +117,12 @@ export default function AddProduct() {
         setTimeout(() => {
           alert.info("용량이 커서 시간이 조금 걸리네요 😅");
         }, 7000);
+        setTimeout(() => {
+          alert.info("죄송해요 정말 거의 다 됐어요 😥");
+        }, 20000);
+        setTimeout(() => {
+          alert.info("새로고침 하지마세요!!! 다 됐어요! 😭");
+        }, 100000);
         const timeStamp = Date.now();
         uploadImage(file) //
           .then((url) => {
@@ -144,10 +160,10 @@ export default function AddProduct() {
   return (
     <>
       <Banner title='Register a New Product' subTitle='새 제품 등록하기' />
-      <div className=' flex m-10 font-["Raleway"]'>
-        <section className='basis-1/2 flex flex-col justify-center items-center '>
+      <div className=' flex flex-col lg:flex-row m-10 font-["Raleway"]'>
+        <section className='basis-1/2 flex flex-col justify-center items-center px-10'>
           {!file && (
-            <div className='h-full w-full flex justify-center items-center bg-gray-50 text-gray-600 text-center'>
+            <div className='h-40  lg:h-full w-full flex justify-center items-center bg-gray-50 text-gray-600 text-center'>
               사진을 첨부하시면 <br />
               미리보기가 생성됩니다.
             </div>
@@ -167,7 +183,7 @@ export default function AddProduct() {
                 .map((item, index) => (
                   <img
                     key={index}
-                    className='h-40 w-28 py-4 px-2'
+                    className='h-20 w-18 lg:h-40 lg:w-28 py-4 px-1 lg:px-2'
                     src={URL.createObjectURL(item)}
                     alt='local file'
                     onClick={() => {
@@ -177,10 +193,10 @@ export default function AddProduct() {
                 ))}
           </div>
         </section>
-        <section className='basis-1/2 px-20'>
+        <section className='basis-1/2 lg:backdrop:px-10'>
           <form className='flex flex-col' onSubmit={handleSubmit}>
             <label htmlFor='file' className={LABEL_PROPERTY}>
-              Product Image (최대 5장까지 업로드 가능)
+              Product Image (최대 5장까지)
             </label>
             {/* 업로드 완류 후 파일 이름 남는 현상 해결 요망 */}
             <input
@@ -262,71 +278,75 @@ export default function AddProduct() {
               required
             />
             <label className={LABEL_PROPERTY}>Color</label>
-            <div className={INPUT_PROPERTY}>
+            <div className='flex flex-col lg:flex-row bg-zinc-100 x-2 lg-18 lg:h-12 p-2 rounded-sm mb-5 border flex items-center outline-none'>
               {/* required을 못거는 문제가 있음 */}
-              <input
-                type='checkBox'
-                id='black'
-                className='mr-1'
-                onChange={handleCheck}
-              />
-              <label htmlFor='black' className='mr-5'>
-                Black
-              </label>
-              <input
-                type='checkBox'
-                id='white'
-                className='mr-1'
-                onChange={handleCheck}
-              />
-              <label htmlFor='white' className='mr-5'>
-                White
-              </label>
-              <input
-                type='checkBox'
-                id='red'
-                className='mr-1'
-                onChange={handleCheck}
-              />
-              <label htmlFor='red' className='mr-5'>
-                Red
-              </label>
-              <input
-                type='checkBox'
-                id='green'
-                className='mr-1'
-                onChange={handleCheck}
-              />
-              <label htmlFor='green' className='mr-5'>
-                Green
-              </label>
-              <input
-                type='checkBox'
-                id='blue'
-                className='mr-1'
-                onChange={handleCheck}
-              />
-              <label htmlFor='blue' className='mr-5'>
-                Blue
-              </label>
-              <input
-                type='checkBox'
-                id='yellow'
-                className='mr-1'
-                onChange={handleCheck}
-              />
-              <label htmlFor='yellow' className='mr-5'>
-                Yellow
-              </label>
-              <input
-                type='checkBox'
-                id='pink'
-                className='mr-1'
-                onChange={handleCheck}
-              />
-              <label htmlFor='pink' className='mr-5'>
-                Pink
-              </label>
+              <div>
+                <input
+                  type='checkBox'
+                  id='black'
+                  className='mr-1'
+                  onChange={handleCheck}
+                />
+                <label htmlFor='black' className='mr-3'>
+                  Black
+                </label>
+                <input
+                  type='checkBox'
+                  id='white'
+                  className='mr-1'
+                  onChange={handleCheck}
+                />
+                <label htmlFor='white' className='mr-3'>
+                  White
+                </label>
+                <input
+                  type='checkBox'
+                  id='red'
+                  className='mr-1'
+                  onChange={handleCheck}
+                />
+                <label htmlFor='red' className='mr-3'>
+                  Red
+                </label>
+                <input
+                  type='checkBox'
+                  id='green'
+                  className='mr-1'
+                  onChange={handleCheck}
+                />
+                <label htmlFor='green' className='mr-3'>
+                  Green
+                </label>
+              </div>
+              <div>
+                <input
+                  type='checkBox'
+                  id='blue'
+                  className='mr-1'
+                  onChange={handleCheck}
+                />
+                <label htmlFor='blue' className='mr-3'>
+                  Blue
+                </label>
+                <input
+                  type='checkBox'
+                  id='yellow'
+                  className='mr-1'
+                  onChange={handleCheck}
+                />
+                <label htmlFor='yellow' className='mr-3'>
+                  Yellow
+                </label>
+                <input
+                  type='checkBox'
+                  id='pink'
+                  className='mr-1'
+                  onChange={handleCheck}
+                />
+                <label htmlFor='pink' className='mr-3'>
+                  Pink
+                </label>
+              </div>
             </div>
 
             <label className={LABEL_PROPERTY}>Tags</label>

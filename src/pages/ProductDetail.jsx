@@ -91,19 +91,19 @@ export default function ProductDetail() {
   // } = useDibbs();
 
   return (
-    <div className='pt-24 flex p-8 font-["Raleway"] '>
-      <section className='basis-1/2'>
+    <div className='pt-24 mb-10 xl:mb-0 flex flex-col xl:flex-row xl:p-20 font-["Raleway"] '>
+      <section className='xl:basis-1/2 xl:p-10'>
         <div className=' h-auto flex justify-center'>
-          <img className=' h-128' src={mainImage} alt='local file' />
+          <img className=' h-auto xl:h-128' src={mainImage} alt='local file' />
         </div>
-        <div className='h-1/4 flex items-center justify-center'>
+        <div className='h-1/4 flex items-center  justify-center'>
           {image && typeof image === "object"
             ? image
                 // .slice(1)
                 .map((item, index) => (
                   <img
                     key={index}
-                    className=' h-36 w-28 py-4 px-2 cursor-pointer'
+                    className=' h-36 w-28 py-4 xl:px-2 cursor-pointer'
                     src={item}
                     alt='local file'
                     onClick={() => {
@@ -114,7 +114,7 @@ export default function ProductDetail() {
             : ""}
         </div>
       </section>
-      <section className='pt-10 pl-28 flex flex-col gap-4 basis-1/2'>
+      <section className='pt-10 px-10  flex flex-col gap-4 basis-1/2'>
         <div className='flex gap-2'>
           {tags && tags.new && (
             <div className='bg-red-600 text-white px-1 text-sm leading-5'>

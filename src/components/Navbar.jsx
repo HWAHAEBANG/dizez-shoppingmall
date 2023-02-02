@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { FaHeart, FaShoppingBag } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { ImArrowUpRight, ImArrowUpLeft } from "react-icons/im";
-
+import { GiHamburgerMenu } from "react-icons/gi";
+import { BsFolderPlus } from "react-icons/bs";
 import { useAuthContext } from "../context/AuthContext";
 import useCart from "../hooks/useCart";
 import useDibbs from "../hooks/useDibbs";
@@ -31,6 +32,8 @@ export default function Navbar() {
     window.location.reload();
   };
 
+  const [clicked, setClicked] = useState(false);
+
   return (
     <div className='fixed z-20'>
       {!user && (
@@ -52,16 +55,17 @@ export default function Navbar() {
         className={
           mouseOver
             ? "w-full h-24 bg-white duration-200 fixed left-0 2xl:px-36 z-10 font-['Raleway']"
-            : "w-full h-14 bg-white duration-200 overflow-hidden fixed left-0 2xl:px-36 z-10 font-['Raleway']"
+            : "w-full h-14 bg-white duration-200 lg:overflow-hidden fixed left-0 2xl:px-36 z-10 font-['Raleway']"
         }
       >
         <section className='flex justify-between items-center h-14'>
-          <Link to='/' className='text-2xl mx-5 font-semibold '>
+          <Link to='/' className='text-2xl ml-5 mr-0 lg:mr-5 font-semibold '>
             DI:ZEZ
           </Link>
-          <div className='flex flex-1 gap-6 ml-7 md:ml-28 text-lg duration-200'>
+          <div className='hidden lg:flex flex-1 gap-6 ml-7 md:ml-28 text-lg duration-200'>
             <Link to='/'>Home</Link>
             <Link
+              to='/shop/men'
               className='flex items-center'
               onMouseEnter={() => setMouseOver(true)}
             >
@@ -71,8 +75,8 @@ export default function Navbar() {
             <Link to='/blog'>Blog</Link>
             <Link to='/contact'>Contact</Link>
           </div>
-          <div className='mx-10 flex gat-6 text-lg'>
-            <div className='flex gap-7 mx-5'>
+          <div className='lg:mx-10 flex text-lg'>
+            <div className='flex gap-3 lg:gap-7 mx-5'>
               <Link to='/dibbs' className='flex items-center gap-2'>
                 <FaHeart />
                 <div className='bg-black h-6 w-6 text-white text-sm text-center rounded-full'>
@@ -90,9 +94,10 @@ export default function Navbar() {
             </div>
             {user && user.isAdmin && (
               <Link to='/shop/add'>
-                <button className='text-sm mx-5 bg-gray-700 text-white px-3 h-7 rounded-lg hover:brightness-200 w-36'>
+                <button className='hidden lg:block text-sm mx-5 bg-gray-700 text-white px-3 h-7 rounded-lg hover:brightness-200 w-36'>
                   새 제품 등록하기
                 </button>
+                <BsFolderPlus className='lg:hidden text-3xl mr-6' />
               </Link>
             )}
             {user && !user.isAdmin && (
@@ -107,13 +112,13 @@ export default function Navbar() {
               </div>
             )}
             {user && (
-              <div className='mx-5 shrink-0'>
+              <div className='hidden lg:block mx-5 shrink-0'>
                 {user.displayName}
                 <span className='text-xs'> 님</span>
               </div>
             )}
             {user && (
-              <button className='mx-5' onClick={handleLogout}>
+              <button className='hidden lg:block mx-5' onClick={handleLogout}>
                 Logout
               </button>
             )}
@@ -129,13 +134,43 @@ export default function Navbar() {
               </div>
             )}
           </div>
+          <GiHamburgerMenu
+            className='text-3xl mr-5'
+            onClick={() => {
+              setClicked((prev) => !prev);
+            }}
+          />
         </section>
-        <section className='flex items-center ml-24 md:ml-44 gap-10'>
-          <Link to='/shop/men'>Men</Link>
-          <Link to='/shop/women'>Women</Link>
-          <Link to='/shop/acc'>Accessories</Link>
-          <Link to='/shop/shoes'>Shoes</Link>
-        </section>
+        {clicked && (
+          <section className='flex flex-col lg:flex-row items-center lg:ml-24 md:ml-44 gap-4 lg:gap-10 bg-white lg:bg-none w-screen py-4 lg:py-0'>
+            <Link to='/shop/men'>Men</Link>
+            <Link to='/shop/women'>Women</Link>
+            <Link to='/shop/acc'>Accessories</Link>
+            <Link to='/shop/shoes'>Shoes</Link>
+            {user && (
+              <div className='mx-5 text-sm mt-12 shrink-0 lg:hidden'>
+                {user.displayName}
+                <span className='text-xs'> 님</span>
+              </div>
+            )}
+            {user && (
+              <button className='lg:hidden mx-5' onClick={handleLogout}>
+                Logout
+              </button>
+            )}
+            {!user && (
+              <div className='relative lg:hidden'>
+                <button
+                  className='mx-5 animate-ping-slow absolute'
+                  onClick={handleLogin}
+                >
+                  Login
+                </button>
+                <button className='mx-5'>Login</button>
+              </div>
+            )}
+          </section>
+        )}
       </div>
     </div>
   );
