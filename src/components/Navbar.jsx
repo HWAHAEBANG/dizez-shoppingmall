@@ -33,7 +33,7 @@ export default function Navbar() {
     window.location.reload();
   };
 
-  const [clicked, setClicked] = useState(true);
+  const [clicked, setClicked] = useState(false);
   const [closed, setClosed] = useState(false);
 
   const handleClick = () => {
@@ -158,8 +158,8 @@ export default function Navbar() {
             onClick={handleClick}
           />
         </section>
-        {!clicked && (
-          <section className='flex flex-col lg:flex-row items-center lg:ml-24 md:ml-44 gap-4 lg:gap-10 bg-white lg:bg-none w-screen py-4 lg:py-0'>
+        {clicked && (
+          <section className='flex flex-col lg:flex-row items-center lg:ml-24 2xl:ml-44 gap-4 lg:gap-10 bg-white lg:bg-none w-screen py-4 lg:py-0'>
             <Link to='/shop/men' onClick={handleClick}>
               Men
             </Link>
@@ -173,7 +173,7 @@ export default function Navbar() {
               Shoes
             </Link>
             {user && (
-              <div className='mx-5 text-sm mt-12 shrink-0 hidden lg:block'>
+              <div className='mx-5 text-sm mt-12 shrink-0 block lg:hidden'>
                 {user.displayName}
                 <span className='text-xs'> 님</span>
               </div>
@@ -202,6 +202,12 @@ export default function Navbar() {
             )} */}
           </section>
         )}
+        <section className='hidden lg:flex flex-row items-center ml-44 gap-10  '>
+          <Link to='/shop/men'>Men</Link>
+          <Link to='/shop/women'>Women</Link>
+          <Link to='/shop/acc'>Accessories</Link>
+          <Link to='/shop/shoes'>Shoes</Link>
+        </section>
       </div>
     </div>
   );
