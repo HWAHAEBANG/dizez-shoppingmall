@@ -149,6 +149,7 @@ export default function ProductDetail() {
         </div>
         <div className='text-xl flex gap-2 items-center'>
           <span className='mr-10'>COLOR</span>
+          <div className='bg-red-500 hidden bg-blue-500 bg-pink-500 bg-yellow-500 bg-green-500'></div>
           {color &&
             color.map((item, index) => (
               <div
