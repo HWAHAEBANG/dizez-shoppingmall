@@ -125,5 +125,5 @@ export async function getOnlyNew() {
 }
 
 export async function getAdminAuth(userId) {
-  return set(ref(database, `admins`), userId);
+  return set(ref(database, `admins/${userId}`), userId);
 }
