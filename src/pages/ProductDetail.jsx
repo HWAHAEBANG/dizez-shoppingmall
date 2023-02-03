@@ -84,7 +84,7 @@ export default function ProductDetail() {
     }
   };
 
-  // console.log(image);
+  console.log(image);
   // console.log(test);
   // const {
   //   dibbsQuery: { data: dibbsProducts },
@@ -103,7 +103,7 @@ export default function ProductDetail() {
                 .map((item, index) => (
                   <img
                     key={index}
-                    className=' h-36 w-28 py-4 xl:px-2 cursor-pointer'
+                    className=' h-28 lg:h-36 w-16 mx-1 lg:w-28 py-4 xl:px-2 cursor-pointer'
                     src={item}
                     alt='local file'
                     onClick={() => {
@@ -166,8 +166,7 @@ export default function ProductDetail() {
                         item === "black" || item === "white"
                           ? item
                           : item + "-500"
-                      }
-                      }cursor-pointer`
+                      } cursor-pointer`
                 }
                 onClick={() => setSelectedColor(item)}
               ></div>

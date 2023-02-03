@@ -67,14 +67,7 @@ export default function AddProduct() {
     if (value.length !== 0 && name && name === "file") {
       // console.log(files);
       if (files.length > 5) {
-        setFile(
-          Object.assign(
-            [],
-            Object.entries(files)
-              .slice(0, 5)
-              .map((entry) => entry[1])
-          )
-        );
+        setFile(Array.prototype.slice.call(files, 0, 5));
         // 업로딩안된다 배열이라그런듯
         // setFile(
         //   Object.assign(

@@ -4,7 +4,7 @@ import ShopForm from "../components/ShopForm";
 
 export default function Men() {
   return (
-    <div>
+    <div className='mt-14'>
       <Banner
         title={"Newest Men Clothing"}
         subTitle={

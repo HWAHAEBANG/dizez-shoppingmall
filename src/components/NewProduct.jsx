@@ -82,7 +82,7 @@ export default function NewProduct() {
               src='./image/main/adv_2.jpg'
               alt=''
             />
-            <span className='absolute font-["Raleway"] font-extrabold text-white text-7xl text-shadow sm:text-shadow-sm md:text-shadow-md lg:text-shadow-lg xl:text-shadow-xl -rotate-90 -left-80 top-80'>
+            <span className='absolute font-["Raleway"] font-extrabold text-white text-7xl text-shadow sm:text-shadow-sm md:text-shadow-md lg:text-shadow-lg xl:text-shadow-xl -rotate-90 -left-80 top-40  xl:top-80'>
               ACCESSORIES
             </span>
             <div className='absolute top-60 -right-24 text-zinc-800'>
@@ -102,7 +102,7 @@ export default function NewProduct() {
               </div>
             </div>
             <div className='absolute -bottom-32 -left-24 text-right'>
-              <p className='text-2xl xl:text-5xl mb-4 font-bold'>FESTIVAL</p>
+              <p className='text-2xl xl:text-5xl font-bold'>FESTIVAL</p>
               <p className='text-6xl xl:text-8xl font-bold mb-9'>Alexandra</p>
               <span className='text-2xl'>
                 Non aliqua reprehenderit <br />

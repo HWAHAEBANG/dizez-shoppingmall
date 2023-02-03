@@ -5,7 +5,7 @@ import MainButton from "./ui/MainButton";
 
 export default function Promotion() {
   return (
-    <div className='relative mt-24  text-shadow sm:text-shadow-sm md:text-shadow-md lg:text-shadow-lg xl:text-shadow-xl'>
+    <div className='relative mt-12 xl:mt-24  text-shadow sm:text-shadow-sm md:text-shadow-md lg:text-shadow-lg xl:text-shadow-xl'>
       <img
         className='w-full'
         src='./image/main/promotion_1.webp'
@@ -16,7 +16,7 @@ export default function Promotion() {
         <p className='text-xs lg:text-xl lg:mb-4  text-white'>
           <span className='font-bold'>DEAL</span> OF THE WEEK
         </p>
-        <p className='text-2xl lg:text-6xl xl:text-9xl mb-2 lg:mb-9 text-white'>
+        <p className='font-bold lg:font-medium text-2xl lg:text-6xl xl:text-9xl mb-2 lg:mb-9 text-white'>
           Stay Warm
           <br />
           And Trendy

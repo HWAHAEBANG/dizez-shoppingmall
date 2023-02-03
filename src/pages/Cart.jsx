@@ -22,9 +22,9 @@ export default function Cart() {
   return (
     <div className='pt-14'>
       <Banner title='Shopping Cart' />
-      <section className='flex flex-col lg:flex-row justify-center py-12 px-5'>
-        <div className='basis-3/4 mr-20 '>
-          <div className='border-b-2 flex py-3 font-bold'>
+      <section className='flex flex-col lg:flex-row pb-12 pt-0 lg:pt-12 px-5 '>
+        <div className='lg:basis-3/4 lg:mr-20'>
+          <div className='border-b-2 py-3 font-bold hidden lg:flex'>
             <p className='basis-1/12'>PRODUCT</p>
             <p className='basis-4/12'>(Color / Size)</p>
             <p className='basis-2/12'>PRICE</p>
@@ -35,7 +35,7 @@ export default function Cart() {
             <CartItem key={product.id} product={product} />
           ))}
         </div>
-        <div className='basis-1/4 bg-gray-200 flex flex-col px-10 py-10'>
+        <div className='lg:basis-1/4 bg-gray-200 flex flex-col px-10 py-10'>
           <p className='border-b-2 pb-3 text-2xl border-gray-400 font-bold'>
             Order Summary
           </p>

@@ -17,12 +17,12 @@ export default function Event({ comeFromBlog }) {
       <div className='flex flex-col gap-10 mb-16 xl:flex-row'>
         <div className='relative'>
           <img src='./image/main/blog_1.png' alt='' />
-          <div className='bg-white absolute bottom-0 right-0 py-6 px-8 hidden xl:block'>
-            <p className='text-xl'>
+          <div className='bg-white bg-opacity-50 absolute bottom-0 right-0 py-3 lg:py-6 px-4 lg:px-8'>
+            <p className='text-sm lg:text-xl'>
               Fashion Trends In 2023: <br />
               Style, Colors, Accessories
             </p>
-            <p className='text-xs mt-4 mb-8'>Aug 02. 2023</p>
+            <p className='text-xs mt-1 lg:mt-4 mb-2 lg:mb-8 '>Aug 02. 2023</p>
             <div className='flex items-center hover:translate-x-10 duration-500 '>
               <div className='h-0.5 w-6 bg-black'></div>
               <div className='ml-2 cursor-pointer'>Read More</div>
@@ -31,12 +31,12 @@ export default function Event({ comeFromBlog }) {
         </div>
         <div className='relative'>
           <img src='./image/main/blog_2.png' alt='' />
-          <div className='bg-white absolute bottom-0 right-0 py-6 px-8 hidden xl:block'>
-            <p className='text-xl'>
+          <div className='bg-white bg-opacity-50 absolute bottom-0 right-0 py-3 lg:py-6 px-4 lg:px-8'>
+            <p className='text-sm lg:text-xl'>
               Fashion Trends In 2023: <br />
               Style, Colors, Accessories
             </p>
-            <p className='text-xs mt-4 mb-8'>Aug 02. 2023</p>
+            <p className='text-xs mt-1 lg:mt-4 mb-2 lg:mb-8'>Aug 02. 2023</p>
             <div className='flex items-center hover:translate-x-10 duration-500 '>
               <div className='h-0.5 w-6 bg-black'></div>
               <div className='ml-2 cursor-pointer'>Read More</div>

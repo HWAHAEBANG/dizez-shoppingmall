@@ -5,6 +5,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { ImArrowUpRight, ImArrowUpLeft } from "react-icons/im";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsFolderPlus } from "react-icons/bs";
+import { RxCross2 } from "react-icons/rx";
 import { useAuthContext } from "../context/AuthContext";
 import useCart from "../hooks/useCart";
 import useDibbs from "../hooks/useDibbs";
@@ -32,20 +33,38 @@ export default function Navbar() {
     window.location.reload();
   };
 
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(true);
+  const [closed, setClosed] = useState(false);
+
+  const handleClick = () => {
+    setClicked((prev) => !prev);
+  };
+
+  const handleClose = () => {
+    setClosed((prev) => !prev);
+  };
 
   return (
     <div className='fixed z-20'>
-      {!user && (
-        <div className='fixed right-52 top-24 z-20  px-5 py-2 rounded-sm text-zinc-800 text-center bg-black bg-opacity-10'>
-          <ImArrowUpRight className='absolute right-10 -top-7 text-xl' />
+      {!user && !closed && (
+        <div className='fixed top-20 text-xs lg:text-0  lg:right-10 lg:top-20 2xl:right-52 2xl:top-24 z-20  px-5 py-2 rounded-sm text-zinc-800 text-center bg-black bg-opacity-10'>
+          <ImArrowUpRight className='absolute right-28 lg:right-10 -top-7 text-xl' />
+          <RxCross2
+            className='absolute right-1 -top-5 text-lg'
+            onClick={handleClose}
+          />
           <p>로그인을 하시면 찜하기, 장바구니 기능을 이용하실 수 있습니다.</p>
           <p>Google 계정으로 간편하게 로그인이 가능합니다.</p>
         </div>
       )}
-      {user && !user.isAdmin && (
-        <div className='fixed right-52 top-24 z-20  px-5 py-2 rounded-sm text-zinc-800 text-center bg-black bg-opacity-10'>
-          <ImArrowUpLeft className='absolute left-10 -top-7 text-xl' />
+      {user && !user.isAdmin && !closed && (
+        <div className='fixed right-5 top-20 text-xs lg:text-0  lg:right-20 lg:top-20 2xl:right-52 2xl:top-24 z-20  px-5 py-2 rounded-sm text-zinc-800 text-center bg-black bg-opacity-10'>
+          <ImArrowUpRight className='absolute left-32 -top-7 text-xl lg:hidden' />
+          <ImArrowUpLeft className='absolute left-10 -top-7 text-xl hidden lg:block' />
+          <RxCross2
+            className='absolute right-1 -top-5 text-lg'
+            onClick={handleClose}
+          />
           <p>버튼을 눌러 관리자 권한을 받으시면</p>
           <p>새 제품 등록, 제품 정보 변경이 가능합니다.</p>
         </div>
@@ -76,7 +95,7 @@ export default function Navbar() {
             <Link to='/contact'>Contact</Link>
           </div>
           <div className='lg:mx-10 flex text-lg'>
-            <div className='flex gap-3 lg:gap-7 mx-5'>
+            <div className='flex gap-3 lg:gap-7 mx-2 lg:mx-5'>
               <Link to='/dibbs' className='flex items-center gap-2'>
                 <FaHeart />
                 <div className='bg-black h-6 w-6 text-white text-sm text-center rounded-full'>
@@ -97,18 +116,18 @@ export default function Navbar() {
                 <button className='hidden lg:block text-sm mx-5 bg-gray-700 text-white px-3 h-7 rounded-lg hover:brightness-200 w-36'>
                   새 제품 등록하기
                 </button>
-                <BsFolderPlus className='lg:hidden text-3xl mr-6' />
+                <BsFolderPlus className='lg:hidden text-3xl mx-3' />
               </Link>
             )}
             {user && !user.isAdmin && (
-              <div className='relative w-36 h-7 mx-5'>
+              <div className='relative w-28 lg:w-36 h-7 lg:mx-5'>
                 <button
-                  className='z-30 absolute text-sm mx-5 bg-red-700 text-white px-3 h-7 rounded-lg hover:brightness-200 w-36'
+                  className='w-28 lg:w-36 h-7 lg:mx-5 lg:px-3 z-30 absolute text-xs lg:text-sm  bg-red-700 text-white   rounded-lg hover:brightness-200 '
                   onClick={getAuthority}
                 >
                   관리자 권한 받기
                 </button>
-                <div className='absolute w-36 h-7 mx-5 bg-red-700 rounded-lg animate-ping-slow'></div>
+                <div className='w-28 lg:w-36 h-7 lg:mx-5 lg:px-3 absolute bg-red-700 rounded-lg animate-ping-slow'></div>
               </div>
             )}
             {user && (
@@ -125,50 +144,62 @@ export default function Navbar() {
             {!user && (
               <div className='relative'>
                 <button
-                  className='mx-5 animate-ping-slow absolute'
+                  className='ml-5 animate-ping-slow absolute'
                   onClick={handleLogin}
                 >
                   Login
                 </button>
-                <button className='mx-5'>Login</button>
+                <button className=' ml-5'>Login</button>
               </div>
             )}
           </div>
           <GiHamburgerMenu
-            className='text-3xl mr-5'
-            onClick={() => {
-              setClicked((prev) => !prev);
-            }}
+            className='text-3xl mr-5 lg:hidden'
+            onClick={handleClick}
           />
         </section>
-        {clicked && (
+        {!clicked && (
           <section className='flex flex-col lg:flex-row items-center lg:ml-24 md:ml-44 gap-4 lg:gap-10 bg-white lg:bg-none w-screen py-4 lg:py-0'>
-            <Link to='/shop/men'>Men</Link>
-            <Link to='/shop/women'>Women</Link>
-            <Link to='/shop/acc'>Accessories</Link>
-            <Link to='/shop/shoes'>Shoes</Link>
+            <Link to='/shop/men' onClick={handleClick}>
+              Men
+            </Link>
+            <Link to='/shop/women' onClick={handleClick}>
+              Women
+            </Link>
+            <Link to='/shop/acc' onClick={handleClick}>
+              Accessories
+            </Link>
+            <Link to='/shop/shoes' onClick={handleClick}>
+              Shoes
+            </Link>
             {user && (
-              <div className='mx-5 text-sm mt-12 shrink-0 lg:hidden'>
+              <div className='mx-5 text-sm mt-12 shrink-0 hidden lg:block'>
                 {user.displayName}
                 <span className='text-xs'> 님</span>
               </div>
             )}
             {user && (
-              <button className='lg:hidden mx-5' onClick={handleLogout}>
+              <button
+                className='lg:hidden lg:mx-5'
+                onClick={() => {
+                  handleLogout();
+                  handleClick();
+                }}
+              >
                 Logout
               </button>
             )}
-            {!user && (
+            {/* {!user && (
               <div className='relative lg:hidden'>
                 <button
-                  className='mx-5 animate-ping-slow absolute'
+                  className='lg:mx-5 animate-ping-slow absolute'
                   onClick={handleLogin}
                 >
                   Login
                 </button>
                 <button className='mx-5'>Login</button>
               </div>
-            )}
+            )} */}
           </section>
         )}
       </div>
