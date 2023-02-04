@@ -160,7 +160,7 @@ export default function Navbar() {
           />
         </section>
         {clicked && (
-          <div className='flex flex-col lg:flex-row items-center lg:ml-24 2xl:ml-44 gap-4 lg:gap-10 bg-white lg:bg-none w-screen py-4 lg:py-0'>
+          <div className='flex lg:hidden flex-col items-center lg:ml-24 2xl:ml-44 gap-4 lg:gap-10 bg-white lg:bg-none w-screen py-4 lg:py-0'>
             <Link to='/' onClick={handleClick}>
               Home
             </Link>
