@@ -32,6 +32,9 @@ module.exports = {
         128: "40rem",
       },
     },
+    transitionProperty: {
+      height: "height",
+    },
   },
   plugins: [require("tailwindcss-textshadow"), require("tailwind-scrollbar")],
 };

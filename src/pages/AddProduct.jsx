@@ -112,10 +112,12 @@ export default function AddProduct() {
         }, 7000);
         setTimeout(() => {
           alert.info("죄송해요 정말 거의 다 됐어요 😥");
-        }, 20000);
+        }, 50000);
         setTimeout(() => {
-          alert.info("새로고침 하지마세요!!! 다 됐어요! 😭");
-        }, 100000);
+          alert.info(
+            "렉걸린 거 아니에요. 대용량 파일이 원래 엄청 오래 걸려요 😭"
+          );
+        }, 200000);
         const timeStamp = Date.now();
         uploadImage(file) //
           .then((url) => {

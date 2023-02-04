@@ -3,6 +3,8 @@ import { FaHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import useDibbs from "../hooks/useDibbs";
+import { useAuthContext } from "../context/AuthContext";
+import { useAlert } from "react-alert";
 
 export default function ProductCard({
   product,
@@ -18,11 +20,18 @@ export default function ProductCard({
     }
   });
 
+  const { uid } = useAuthContext();
+  const alert = useAlert();
+
   const { removeDibbsItem, addOrUpdateDibbsItem } = useDibbs();
 
   const heartOn = () => {
-    setHeart((heart) => !heart);
-    addOrUpdateDibbsItem.mutate(product);
+    if (uid) {
+      setHeart((heart) => !heart);
+      addOrUpdateDibbsItem.mutate(product);
+    } else {
+      alert.error("찜목록에 추가하시려면 로그인을 해주세요. 😘");
+    }
   };
 
   const heartOff = () => {

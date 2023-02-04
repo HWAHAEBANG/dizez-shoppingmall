@@ -35,6 +35,7 @@ export default function Navbar() {
 
   const [clicked, setClicked] = useState(false);
   const [closed, setClosed] = useState(false);
+  const [touched, setTouched] = useState(false);
 
   const handleClick = () => {
     setClicked((prev) => !prev);
@@ -159,21 +160,41 @@ export default function Navbar() {
           />
         </section>
         {clicked && (
-          <section className='flex flex-col lg:flex-row items-center lg:ml-24 2xl:ml-44 gap-4 lg:gap-10 bg-white lg:bg-none w-screen py-4 lg:py-0'>
-            <Link to='/shop/men' onClick={handleClick}>
-              Men
+          <div className='flex flex-col lg:flex-row items-center lg:ml-24 2xl:ml-44 gap-4 lg:gap-10 bg-white lg:bg-none w-screen py-4 lg:py-0'>
+            <Link to='/' onClick={handleClick}>
+              Home
             </Link>
-            <Link to='/shop/women' onClick={handleClick}>
-              Women
+            <Link
+              className='flex items-center'
+              onClick={() => setTouched((prev) => !prev)}
+            >
+              Shop
+              <IoIosArrowDown className='text-sm mt-2 ml-1' />
             </Link>
-            <Link to='/shop/acc' onClick={handleClick}>
-              Accessories
+            {touched && (
+              <section className='flex flex-row justify-center items-center gap-8 bg-gray-100 w-full transition-height ease-in-out h-12 border-y'>
+                <Link to='/shop/men' onClick={handleClick}>
+                  Men
+                </Link>
+                <Link to='/shop/women' onClick={handleClick}>
+                  Women
+                </Link>
+                <Link to='/shop/acc' onClick={handleClick}>
+                  Accessories
+                </Link>
+                <Link to='/shop/shoes' onClick={handleClick}>
+                  Shoes
+                </Link>
+              </section>
+            )}
+            <Link to='/blog' onClick={handleClick}>
+              Blog
             </Link>
-            <Link to='/shop/shoes' onClick={handleClick}>
-              Shoes
+            <Link to='/contact' onClick={handleClick}>
+              Contact
             </Link>
             {user && (
-              <div className='mx-5 text-sm mt-12 shrink-0 block lg:hidden'>
+              <div className='mx-5 text-sm mt-12 mb-3 shrink-0 block lg:hidden'>
                 {user.displayName}
                 <span className='text-xs'> 님</span>
               </div>
@@ -189,25 +210,23 @@ export default function Navbar() {
                 Logout
               </button>
             )}
-            {/* {!user && (
-              <div className='relative lg:hidden'>
-                <button
-                  className='lg:mx-5 animate-ping-slow absolute'
-                  onClick={handleLogin}
-                >
-                  Login
-                </button>
-                <button className='mx-5'>Login</button>
-              </div>
-            )} */}
-          </section>
+          </div>
+
+          // <section className='flex flex-col lg:flex-row items-center lg:ml-24 2xl:ml-44 gap-4 lg:gap-10 bg-white lg:bg-none w-screen py-4 lg:py-0'>
+          //   <Link to='/shop/men' onClick={handleClick}>
+          //     Men
+          //   </Link>
+          //   <Link to='/shop/women' onClick={handleClick}>
+          //     Women
+          //   </Link>
+          //   <Link to='/shop/acc' onClick={handleClick}>
+          //     Accessories
+          //   </Link>
+          //   <Link to='/shop/shoes' onClick={handleClick}>
+          //     Shoes
+          //   </Link>
+          // </section>
         )}
-        <section className='hidden lg:flex flex-row items-center ml-44 gap-10  '>
-          <Link to='/shop/men'>Men</Link>
-          <Link to='/shop/women'>Women</Link>
-          <Link to='/shop/acc'>Accessories</Link>
-          <Link to='/shop/shoes'>Shoes</Link>
-        </section>
       </div>
     </div>
   );

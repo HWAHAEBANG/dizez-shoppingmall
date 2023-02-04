@@ -9,7 +9,7 @@ import { useAuthContext } from "../context/AuthContext";
 
 export default function ProductDetail() {
   const alert = useAlert();
-  const { setUpdater } = useAuthContext();
+  const { uid, setUpdater } = useAuthContext();
 
   useEffect(() => {
     setUpdater((prev) => !prev);
@@ -58,29 +58,33 @@ export default function ProductDetail() {
   }
 
   const handleSubmit = () => {
-    if (!selectedSize && !selectedColor) {
-      alert.error("사이즈와 색상을 선택하세요");
-    } else if (!selectedSize && selectedColor) {
-      alert.error("사이즈를 선택하세요");
-    } else if (selectedSize && !selectedColor) {
-      alert.error("색상을 선택하세요");
+    if (uid) {
+      if (!selectedSize && !selectedColor) {
+        alert.error("사이즈와 색상을 선택하세요");
+      } else if (!selectedSize && selectedColor) {
+        alert.error("사이즈를 선택하세요");
+      } else if (selectedSize && !selectedColor) {
+        alert.error("색상을 선택하세요");
+      } else {
+        const product = {
+          id,
+          image,
+          category,
+          title,
+          price,
+          selectedSize,
+          selectedColor,
+          selectedQuantity,
+        };
+        addOrUpdateCartItem.mutate(product, {
+          onSuccess: () => {
+            const test = "상품을 장바구니에 담았습니다.";
+            alert.success(test);
+          },
+        });
+      }
     } else {
-      const product = {
-        id,
-        image,
-        category,
-        title,
-        price,
-        selectedSize,
-        selectedColor,
-        selectedQuantity,
-      };
-      addOrUpdateCartItem.mutate(product, {
-        onSuccess: () => {
-          const test = "상품을 장바구니에 담았습니다.";
-          alert.success(test);
-        },
-      });
+      alert.error("장바구니에 추가하시려면 로그인을 해주세요. 😘");
     }
   };
 
