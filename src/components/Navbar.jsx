@@ -211,22 +211,21 @@ export default function Navbar() {
               </button>
             )}
           </div>
-
-          // <section className='flex flex-col lg:flex-row items-center lg:ml-24 2xl:ml-44 gap-4 lg:gap-10 bg-white lg:bg-none w-screen py-4 lg:py-0'>
-          //   <Link to='/shop/men' onClick={handleClick}>
-          //     Men
-          //   </Link>
-          //   <Link to='/shop/women' onClick={handleClick}>
-          //     Women
-          //   </Link>
-          //   <Link to='/shop/acc' onClick={handleClick}>
-          //     Accessories
-          //   </Link>
-          //   <Link to='/shop/shoes' onClick={handleClick}>
-          //     Shoes
-          //   </Link>
-          // </section>
         )}
+        <section className='hidden lg:flex  items-center lg:ml-24 2xl:ml-44 gap-4 lg:gap-10 bg-white lg:bg-none w-screen py-4 lg:py-0'>
+          <Link to='/shop/men' onClick={handleClick}>
+            Men
+          </Link>
+          <Link to='/shop/women' onClick={handleClick}>
+            Women
+          </Link>
+          <Link to='/shop/acc' onClick={handleClick}>
+            Accessories
+          </Link>
+          <Link to='/shop/shoes' onClick={handleClick}>
+            Shoes
+          </Link>
+        </section>
       </div>
     </div>
   );
