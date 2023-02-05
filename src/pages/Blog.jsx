@@ -1,5 +1,4 @@
 import React from "react";
-import Advertise from "../components/Advertise";
 import Event from "../components/Event";
 
 export default function Blog() {

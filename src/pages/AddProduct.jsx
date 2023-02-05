@@ -1,17 +1,10 @@
-// import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { set } from "firebase/database";
 import React, { useEffect, useState } from "react";
-// import { addNewProduct } from "../api/firebase";
 import { uploadImage } from "../api/uploader";
 import Banner from "../components/Banner";
 import MainButton from "../components/ui/MainButton";
 import useProducts from "../hooks/userProducts";
 import { useAlert } from "react-alert";
-import { FaObjectUngroup } from "react-icons/fa";
-import ClipLoader from "react-spinners/ClipLoader";
 import { ReactComponent as Reservation } from "../loading.svg";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const INPUT_PROPERTY =
   "bg-zinc-100 x-2 h-12 p-2 rounded-sm mb-5 border flex items-center outline-none";

@@ -14,7 +14,7 @@ import Women from "./pages/Women";
 import Acc from "./pages/Acc";
 import Shoes from "./pages/Shoes";
 import ProtectedRoute from "./pages/ProtectedRoute";
-import { transitions, positions, Provider as AlertProvider } from "react-alert";
+import { positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";

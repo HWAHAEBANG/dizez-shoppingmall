@@ -1,26 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
-import { getValue } from "@testing-library/user-event/dist/utils";
+
 import React from "react";
-import { useState } from "react";
-import { useContext } from "react";
-import { FiSettings } from "react-icons/fi";
-import { getOnlyNew, logout } from "../api/firebase";
+
+import { getOnlyNew } from "../api/firebase";
 import { useAuthContext } from "../context/AuthContext";
-import Banner from "./Banner";
 import ProductList from "./ProductList";
 
 export default function OnlyNewList() {
   const { uid } = useAuthContext();
   // console.log(uid);
 
-  const {
-    isLoading,
-    error,
-    data: products,
-  } = useQuery(["products", uid || ""], () => getOnlyNew(uid), {
-    enabled: !!uid,
-    // staleTime: 1000 * 60,
-  });
+  const { data: products } = useQuery(
+    ["products", uid || ""],
+    () => getOnlyNew(uid),
+    {
+      enabled: !!uid,
+      // staleTime: 1000 * 60,
+    }
+  );
 
   let test = [];
 
@@ -34,6 +31,7 @@ export default function OnlyNewList() {
             thing.tags && thing.tags.new && thing.tags.new === true
         )
       );
+      return test;
     });
 
   // console.log(test.flat());

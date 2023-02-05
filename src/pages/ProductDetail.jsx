@@ -3,8 +3,7 @@ import { useLocation } from "react-router-dom";
 import Quantity from "../components/Quantity";
 import MainButton from "../components/ui/MainButton";
 import useCart from "../hooks/useCart";
-// import useDibbs from "../hooks/useDibbs";
-import { useAlert, transitions } from "react-alert";
+import { useAlert } from "react-alert";
 import { useAuthContext } from "../context/AuthContext";
 
 export default function ProductDetail() {
@@ -13,6 +12,7 @@ export default function ProductDetail() {
 
   useEffect(() => {
     setUpdater((prev) => !prev);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const {
@@ -22,15 +22,13 @@ export default function ProductDetail() {
   const { id, image, category, title, price, description, size, color, tags } =
     product;
 
-  //이것도 나중에 원래대로 바꿔도 될 부분. 메인사진 안바뀌는 에러 났던부분
   const [mainImage, setMainImage] = useState(
     typeof image === "object" ? image[0] : image
   );
 
   useEffect(() => {
     setMainImage(typeof image === "object" ? image[0] : image);
-  }, [product]);
-  // 에러 여기까지. setMainImage 따로 하나 만드니까 됨
+  }, [product, image]);
 
   const [selectedSize, setSelectedSize] = useState();
   const [selectedColor, setSelectedColor] = useState();
@@ -40,9 +38,7 @@ export default function ProductDetail() {
 
   if (JSON.parse(localStorage.getItem("viewedKey")) !== null) {
     let arr = JSON.parse(localStorage.getItem("viewedKey"));
-    // console.log(arr);
     let already = arr.filter((item) => {
-      // console.log(item);
       return item.id !== product.id;
     });
     already.unshift(product);

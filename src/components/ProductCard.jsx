@@ -45,7 +45,7 @@ export default function ProductCard({
 
   useEffect(() => {
     localStorage.setItem(`heartKey${id}`, JSON.stringify(heart));
-  }, [heart]);
+  }, [id, heart]);
 
   return (
     <div className='p-3 font-["Raleway"]'>

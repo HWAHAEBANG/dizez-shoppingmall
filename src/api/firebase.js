@@ -50,7 +50,6 @@ async function adminUser(user) {
 }
 
 export async function addNewProduct(product, imageUrl, timeStamp) {
-  // console.log(typeof product.category);
   const id = uuid();
   set(ref(database, `products/${product.category}/${id}`), {
     ...product,
@@ -58,7 +57,6 @@ export async function addNewProduct(product, imageUrl, timeStamp) {
     price: parseInt(product.price),
     image: imageUrl,
     size: product.size.split(","),
-    // color: product.color.split(","),
     timeStamp: timeStamp,
   });
 }
@@ -67,7 +65,6 @@ export async function getProducts(category) {
   return get(ref(database, `products/${category}`)).then((snapshot) => {
     if (snapshot.exists()) {
       return Object.values(snapshot.val());
-      // console.log(snapshot.val());
     }
     return [];
   });
@@ -108,17 +105,15 @@ export async function getDibbs(userId) {
 export async function getOnlyBest() {
   return get(ref(database, `products`)) //
     .then((snapshot) => {
-      // console.log(snapshot);
       const items = snapshot.val() || {};
       return Object.values(items);
     });
 }
 
-// 사실 위랑 똑같음 걍 쓰지머
+// 사실 getOnlyBest와 같지만, 가독성과 일관성을 위해 선언
 export async function getOnlyNew() {
   return get(ref(database, `products`)) //
     .then((snapshot) => {
-      // console.log(snapshot);
       const items = snapshot.val() || {};
       return Object.values(items);
     });

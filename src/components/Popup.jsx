@@ -34,6 +34,7 @@ export default function Popup() {
     } else {
       setHasCookie(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -44,7 +45,8 @@ export default function Popup() {
       const expires = getExpiredDate(1);
       setCookies("DIZEZ_Cookie", true, { path: "/", expires: expires });
     }
-  }, [open]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [checked, open]);
 
   return (
     <div className="font-['Raleway'] text-shadow sm:text-shadow-sm md:text-shadow-md lg:text-shadow-lg xl:text-shadow-xl ">

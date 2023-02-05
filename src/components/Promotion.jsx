@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Countdown from "react-countdown";
 import MainButton from "./ui/MainButton";
 

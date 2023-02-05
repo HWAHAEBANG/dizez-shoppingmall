@@ -1,25 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import { getValue } from "@testing-library/user-event/dist/utils";
 import React from "react";
-import { useState } from "react";
-import { useContext } from "react";
-import { FiSettings } from "react-icons/fi";
-import { getOnlyBest, logout } from "../api/firebase";
+import { getOnlyBest } from "../api/firebase";
 import { useAuthContext } from "../context/AuthContext";
 import ProductList from "./ProductList";
 
 export default function OnlyBestList() {
   const { uid } = useAuthContext();
-  // console.log(uid);
 
-  const {
-    isLoading,
-    error,
-    data: products,
-  } = useQuery(["products", uid || ""], () => getOnlyBest(uid), {
-    enabled: !!uid,
-    // staleTime: 1000 * 60,
-  });
+  const { data: products } = useQuery(
+    ["products", uid || ""],
+    () => getOnlyBest(uid),
+    {
+      enabled: !!uid,
+      // staleTime: 1000 * 60,
+    }
+  );
 
   let test = [];
 
@@ -33,6 +28,7 @@ export default function OnlyBestList() {
             thing.tags && thing.tags.best && thing.tags.best === true
         )
       );
+      return test; // 오류 안 생기는지 잘 확인
     });
 
   // console.log(test.flat());

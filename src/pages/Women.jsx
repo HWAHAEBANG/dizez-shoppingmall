@@ -11,7 +11,7 @@ export default function Women() {
           "Casual linen. Shirt design. 100% suede leather. Backstitch elbow patch"
         }
       />
-      <ShopForm category={"Women"} />;
+      <ShopForm category={"Women"} />
     </div>
   );
 }

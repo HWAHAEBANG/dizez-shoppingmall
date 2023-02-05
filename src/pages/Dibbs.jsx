@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState, CSSProperties } from "react";
+import React, { CSSProperties } from "react";
 import { getDibbs } from "../api/firebase";
 import Banner from "../components/Banner";
 import ProductCard from "../components/ProductCard";
@@ -9,20 +9,19 @@ import ClipLoader from "react-spinners/ClipLoader";
 export default function Dibbs() {
   const { uid } = useAuthContext();
 
-  const {
-    isLoading,
-    error,
-    data: products,
-  } = useQuery(["dibbs", uid || ""], () => getDibbs(uid), {
-    enabled: !!uid,
-  });
+  const { isLoading, data: products } = useQuery(
+    ["dibbs", uid || ""],
+    () => getDibbs(uid),
+    {
+      enabled: !!uid,
+    }
+  );
 
   const override: CSSProperties = {
     display: "block",
     margin: "0 auto",
     borderColor: "gray",
   };
-  let [color, setColor] = useState("#ffffff");
 
   return (
     <div className='pt-14'>
@@ -30,7 +29,7 @@ export default function Dibbs() {
       {isLoading && (
         <div className='h-screen pt-52'>
           <ClipLoader
-            color={color}
+            color='#ffffff'
             loading={isLoading}
             cssOverride={override}
             size={150}
