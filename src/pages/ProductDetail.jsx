@@ -85,10 +85,6 @@ export default function ProductDetail() {
   };
 
   console.log(image);
-  // console.log(test);
-  // const {
-  //   dibbsQuery: { data: dibbsProducts },
-  // } = useDibbs();
 
   return (
     <div className='pt-24 mb-10 xl:mb-0 flex flex-col xl:flex-row xl:p-20 font-["Raleway"] '>
