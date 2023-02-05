@@ -30,7 +30,6 @@ export default function ShopForm({ category }) {
       setOrder(["timeStamp", "createdApp"]);
     }
   };
-  // console.log(order);
 
   if (order[1] === "ascendingOrder") {
     sortedProducts =

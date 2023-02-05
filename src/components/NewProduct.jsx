@@ -25,9 +25,9 @@ export default function NewProduct() {
                 <br />
                 For Every Day
               </p>
-              <div className='flex items-center hover:translate-x-10 duration-500 '>
+              <div className='flex items-center hover:translate-x-5 duration-500 cursor-pointer '>
                 <div className='h-0.5 w-6 bg-black'></div>
-                <Link to='/shop/women' className='ml-2 cursor-pointer'>
+                <Link to='/shop/women' className='ml-2'>
                   Shop Now
                 </Link>
               </div>
@@ -44,9 +44,9 @@ export default function NewProduct() {
                 Non aliqua reprehenderit <br />
                 reprehenderit culpa laboris nulla
               </span>
-              <div className='flex items-center hover:translate-x-10 duration-500 mt-10'>
+              <div className='flex items-center hover:translate-x-5 duration-500 cursor-pointer mt-10'>
                 <div className='h-0.5 w-6 bg-white'></div>
-                <Link to='/shop/women' className='ml-2 cursor-pointer'>
+                <Link to='/shop/women' className='ml-2'>
                   Shop Now
                 </Link>
               </div>
@@ -68,9 +68,9 @@ export default function NewProduct() {
                 <br />
                 Arrivals 2023
               </p>
-              <div className='flex items-center hover:translate-x-10 duration-500'>
+              <div className='flex items-center hover:translate-x-5 duration-500 cursor-pointer'>
                 <div className='h-0.5 w-6 bg-black'></div>
-                <Link to='/shop/women' className='ml-2 cursor-pointer'>
+                <Link to='/shop/women' className='ml-2'>
                   Shop Now
                 </Link>
               </div>
@@ -94,9 +94,9 @@ export default function NewProduct() {
                 <br />
                 This Summer
               </p>
-              <div className='flex items-center hover:translate-x-10 duration-500'>
+              <div className='flex items-center hover:translate-x-5 duration-500 cursor-pointer'>
                 <div className='h-0.5 w-6 bg-black'></div>
-                <Link to='/shop/acc' className='ml-2 cursor-pointer'>
+                <Link to='/shop/acc' className='ml-2'>
                   Shop Now
                 </Link>
               </div>

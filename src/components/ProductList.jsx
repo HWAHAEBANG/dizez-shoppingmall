@@ -3,7 +3,6 @@ import ProductCard from "./ProductCard";
 import MainButton from "./ui/MainButton";
 
 export default function ProductList({ products }) {
-  // console.log(products[0]);
   const [more, setMore] = useState(1);
 
   const countUp = () => {

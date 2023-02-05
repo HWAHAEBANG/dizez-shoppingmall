@@ -4,7 +4,6 @@ import "keen-slider/keen-slider.min.css";
 import "../styled/foldoutSlider.css";
 import MainButton from "./ui/MainButton";
 import { Link } from "react-router-dom";
-// import { ReactComponent as Reservation } from "./assets/loading.svg";
 
 export default function FoldoutSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -42,7 +41,7 @@ export default function FoldoutSlider() {
                   Fashion Week
                 </p>
                 <Link to='/shop/women'>
-                  <MainButton text='Shop Now' bgcolor='black' color='white' />
+                  <MainButton text='Shop Now' bgcolor='white' color='black' />
                 </Link>
               </div>
             </div>

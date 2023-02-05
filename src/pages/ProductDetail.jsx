@@ -147,11 +147,11 @@ export default function ProductDetail() {
           <span className='mr-10'>COLOR</span>
           <div className='bg-red-500 hidden bg-blue-500 bg-pink-500 bg-yellow-500 bg-green-500'></div>
           {color &&
+            // 색상이 첫 번째 것만 표시되는 버그가 있서 위의 의미없는 색상태그 선언이 필요함
             color.map((item, index) => (
               <div
                 key={index}
                 className={
-                  // 색상이 첫 번째 것만 표시되는 버그가 있음! 해결!
                   selectedColor === item
                     ? `w-8 h-8 border rounded-full bg-${
                         item === "black" || item === "white"

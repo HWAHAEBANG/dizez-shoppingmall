@@ -11,13 +11,15 @@ import useCart from "../hooks/useCart";
 import useDibbs from "../hooks/useDibbs";
 import { getAdminAuth } from "../api/firebase";
 
-// 로그인 구현까지 완료되면 반응형 좀 손 보겠습니다~ -칵투스
-
 export default function Navbar() {
-  const [mouseOver, setMouseOver] = useState(false);
   const { user, uid, login, logout } = useAuthContext();
+  const [mouseOver, setMouseOver] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const [closed, setClosed] = useState(false);
+  const [touched, setTouched] = useState(false);
 
   const handleLogin = () => login();
+
   const handleLogout = () => logout();
 
   const {
@@ -33,10 +35,6 @@ export default function Navbar() {
     window.location.reload();
   };
 
-  const [clicked, setClicked] = useState(false);
-  const [closed, setClosed] = useState(false);
-  const [touched, setTouched] = useState(false);
-
   const handleClick = () => {
     setClicked((prev) => !prev);
   };
@@ -48,7 +46,7 @@ export default function Navbar() {
   return (
     <div className='fixed z-20'>
       {!user && !closed && (
-        <div className='fixed top-20 text-xs lg:text-0  lg:right-10 lg:top-20 2xl:right-52 2xl:top-24 z-20  px-5 py-2 rounded-sm text-zinc-800 text-center bg-black bg-opacity-10'>
+        <div className='hidden lg:block fixed top-20 text-xs lg:text-0  lg:right-10 lg:top-20 2xl:right-52 2xl:top-24 z-20  px-5 py-2 rounded-sm text-zinc-800 text-center bg-black bg-opacity-10'>
           <ImArrowUpRight className='absolute right-28 lg:right-10 -top-7 text-xl' />
           <RxCross2
             className='absolute right-1 -top-5 text-lg'
@@ -59,7 +57,7 @@ export default function Navbar() {
         </div>
       )}
       {user && !user.isAdmin && !closed && (
-        <div className='fixed right-5 top-20 text-xs lg:text-0  lg:right-20 lg:top-20 2xl:right-52 2xl:top-24 z-20  px-5 py-2 rounded-sm text-zinc-800 text-center bg-black bg-opacity-10'>
+        <div className='hidden lg:block fixed right-5 top-20 text-xs lg:text-0  lg:right-20 lg:top-20 2xl:right-52 2xl:top-24 z-20  px-5 py-2 rounded-sm text-zinc-800 text-center bg-black bg-opacity-10'>
           <ImArrowUpRight className='absolute left-32 -top-7 text-xl lg:hidden' />
           <ImArrowUpLeft className='absolute left-10 -top-7 text-xl hidden lg:block' />
           <RxCross2

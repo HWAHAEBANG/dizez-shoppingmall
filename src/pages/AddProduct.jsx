@@ -10,6 +10,8 @@ const INPUT_PROPERTY =
   "bg-zinc-100 x-2 h-12 p-2 rounded-sm mb-5 border flex items-center outline-none";
 const LABEL_PROPERTY = "w-80 mb-2";
 export default function AddProduct() {
+  const alert = useAlert();
+  const { addProduct } = useProducts();
   const [tags, setTags] = useState({ new: false, best: false });
   const [colorArray, setColorArray] = useState([]);
   const [product, setProduct] = useState({
@@ -21,23 +23,14 @@ export default function AddProduct() {
     color: "",
   });
   const [file, setFile] = useState();
-  const { addProduct } = useProducts();
   const [isLoading, setIsLoading] = useState(false);
-
-  const alert = useAlert();
+  const [mainImage, setMainImage] = useState();
 
   const handleTags = (e) => {
-    // console.log(e.target.id);
-    // console.log(e.target.checked);
     setTags({ ...tags, [e.target.id]: e.target.checked });
   };
-  // setProduct((product) => ({ ...product, tags: tags }));
-  // console.log(tags);
-  // console.log(product);
 
   const handleCheck = (e) => {
-    // console.log(e.target.checked);
-    // console.log(e.target.id);
     e.target.checked && setColorArray([...colorArray, e.target.id]);
 
     let temp =
@@ -45,43 +38,17 @@ export default function AddProduct() {
     temp && setColorArray(temp);
   };
 
-  useEffect(() => {
-    setProduct((product) => ({ ...product, color: colorArray, tags: tags }));
-  }, [colorArray, tags]);
-
-  // console.log(product);
-  // console.log(colorArray);
-
   const handleChange = (e) => {
-    // console.log(e.target.value.length);
-    // 하 파일선택 다시 들어갔다가 나올 때, 뻑하는 오류 잡음.
-    // 빈 문자열이 받아와지면서 나는 에러이므로, 조건문에서 렝쓰가 0일때 걸러준다..
     const { name, value, files } = e.target;
     if (value.length !== 0 && name && name === "file") {
-      // console.log(files);
+      console.log(files);
       if (files.length > 5) {
         setFile(Array.prototype.slice.call(files, 0, 5));
-        // 업로딩안된다 배열이라그런듯
-        // setFile(
-        //   Object.assign(
-        //     {},
-        //     Object.entries(files)
-        //       .slice(0, 5)
-        //       .map((entry) => entry[1])
-        //   )
-        // );
       } else setFile(files && Object.values(files));
       return;
     }
     setProduct((product) => ({ ...product, [name]: value }));
   };
-
-  const [mainImage, setMainImage] = useState();
-  // console.log(product);
-
-  // useEffect(() => {
-  //   setMainImage(typeof image === "object" ? image[0] : image);
-  // }, [product]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -91,14 +58,12 @@ export default function AddProduct() {
       // 모두 false면 alert
       colorNullCheck.push(e.target[i].checked);
     }
-    // console.log(colorNullCheck);
     if (product.category === "" || product.category === "unselected") {
       alert.error("카테고리를 선택해주세요.");
     } else {
       if (!colorNullCheck.includes(true)) {
         alert.error("색상을 선택해주세요.");
       } else {
-        //여기에 식
         alert.info("업로드 중입니다. 잠시만 기다려주세요.");
         setTimeout(() => {
           alert.info("용량이 커서 시간이 조금 걸리네요 😅");
@@ -114,7 +79,6 @@ export default function AddProduct() {
         const timeStamp = Date.now();
         uploadImage(file) //
           .then((url) => {
-            // console.log(url);
             addProduct.mutate(
               { product, url, timeStamp },
               {
@@ -140,10 +104,9 @@ export default function AddProduct() {
     }
   };
 
-  // console.log(product);
-  // console.log(file);
-  // console.log(typeof file);
-  // console.log(Object.assign({}, file));
+  useEffect(() => {
+    setProduct((product) => ({ ...product, color: colorArray, tags: tags }));
+  }, [colorArray, tags]);
 
   return (
     <>
@@ -166,19 +129,17 @@ export default function AddProduct() {
           )}
           <div className='flex'>
             {file &&
-              file
-                // .slice(1)
-                .map((item, index) => (
-                  <img
-                    key={index}
-                    className='h-20 w-18 lg:h-40 lg:w-28 py-4 px-1 lg:px-2'
-                    src={URL.createObjectURL(item)}
-                    alt='local file'
-                    onClick={() => {
-                      setMainImage(item);
-                    }}
-                  />
-                ))}
+              file.map((item, index) => (
+                <img
+                  key={index}
+                  className='h-20 w-18 lg:h-40 lg:w-28 py-4 px-1 lg:px-2'
+                  src={URL.createObjectURL(item)}
+                  alt='local file'
+                  onClick={() => {
+                    setMainImage(item);
+                  }}
+                />
+              ))}
           </div>
         </section>
         <section className='basis-1/2 lg:backdrop:px-10'>
@@ -186,7 +147,6 @@ export default function AddProduct() {
             <label htmlFor='file' className={LABEL_PROPERTY}>
               Product Image (최대 5장까지)
             </label>
-            {/* 업로드 완류 후 파일 이름 남는 현상 해결 요망 */}
             <input
               id='file'
               className={INPUT_PROPERTY}
@@ -266,8 +226,7 @@ export default function AddProduct() {
               required
             />
             <label className={LABEL_PROPERTY}>Color</label>
-            <div className='flex flex-col lg:flex-row bg-zinc-100 x-2 lg-18 lg:h-12 p-2 rounded-sm mb-5 border flex items-center outline-none'>
-              {/* required을 못거는 문제가 있음 */}
+            <div className='flex flex-col lg:flex-row bg-zinc-100 x-2 lg-18 lg:h-12 p-2 rounded-sm mb-5 border items-center outline-none'>
               <div>
                 <input
                   type='checkBox'
@@ -336,7 +295,6 @@ export default function AddProduct() {
                 </label>
               </div>
             </div>
-
             <label className={LABEL_PROPERTY}>Tags</label>
             <div className={INPUT_PROPERTY}>
               <input
@@ -372,7 +330,6 @@ export default function AddProduct() {
               />
             )}
           </form>
-          {/* {success && <p className='my-2'>✅{success}</p>} */}
         </section>
       </div>
     </>

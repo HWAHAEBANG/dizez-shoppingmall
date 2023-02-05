@@ -4,6 +4,7 @@ import { login, logout, onUserStateChange } from "../api/firebase";
 const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
+  const [updater, setUpdater] = useState(false);
   const [user, setUser] = useState(() => {
     return readUserFromLocalStorage();
   });
@@ -17,9 +18,6 @@ export function AuthContextProvider({ children }) {
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
-
-  const [updater, setUpdater] = useState(false);
-  console.log(updater);
 
   return (
     <AuthContext.Provider

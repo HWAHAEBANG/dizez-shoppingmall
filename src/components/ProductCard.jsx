@@ -8,10 +8,11 @@ import { useAlert } from "react-alert";
 
 export default function ProductCard({
   product,
-  product: { id, category, image, price, timeStamp, title, tags },
+  product: { id, category, image, price, title, tags },
   comeFromDibbs,
 }) {
-  const navigate = useNavigate();
+  const { uid } = useAuthContext();
+  const { removeDibbsItem, addOrUpdateDibbsItem } = useDibbs();
   const [heart, setHeart] = useState(() => {
     if (typeof window === "undefined") {
       return false;
@@ -19,11 +20,8 @@ export default function ProductCard({
       return JSON.parse(window.localStorage.getItem(`heartKey${id}`));
     }
   });
-
-  const { uid } = useAuthContext();
+  const navigate = useNavigate();
   const alert = useAlert();
-
-  const { removeDibbsItem, addOrUpdateDibbsItem } = useDibbs();
 
   const heartOn = () => {
     if (uid) {
@@ -48,7 +46,7 @@ export default function ProductCard({
   }, [id, heart]);
 
   return (
-    <div className='p-3 font-["Raleway"]'>
+    <div className='p-3 font-["Raleway"] cursor-pointer'>
       <div className='h-10 bg-white flex justify-between items-center px-2'>
         <div className='flex gap-2'>
           {tags && tags.new && (

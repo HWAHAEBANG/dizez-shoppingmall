@@ -8,7 +8,6 @@ import ProductList from "./ProductList";
 
 export default function OnlyNewList() {
   const { uid } = useAuthContext();
-  // console.log(uid);
 
   const { data: products } = useQuery(
     ["products", uid || ""],
@@ -23,19 +22,13 @@ export default function OnlyNewList() {
 
   products &&
     products.map((item) => {
-      // console.log(item);
       test.push(
         Object.values(item).filter(
-          (thing) =>
-            //console.log(thing)
-            thing.tags && thing.tags.new && thing.tags.new === true
+          (thing) => thing.tags && thing.tags.new && thing.tags.new === true
         )
       );
       return test;
     });
-
-  // console.log(test.flat());
-  // products.map;
 
   return (
     <div className='hidden xl:block mt-32'>

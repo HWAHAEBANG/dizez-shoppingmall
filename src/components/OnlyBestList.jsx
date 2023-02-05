@@ -20,20 +20,13 @@ export default function OnlyBestList() {
 
   products &&
     products.map((item) => {
-      // console.log(item);
       test.push(
         Object.values(item).filter(
-          (thing) =>
-            //console.log(thing)
-            thing.tags && thing.tags.best && thing.tags.best === true
+          (thing) => thing.tags && thing.tags.best && thing.tags.best === true
         )
       );
       return test; // 오류 안 생기는지 잘 확인
     });
-
-  // console.log(test.flat());
-
-  // products.map;
 
   return (
     <div className=' hidden xl:block mt-32'>
