@@ -41,7 +41,7 @@ export default function FoldoutSlider() {
                   Fashion Week
                 </p>
                 <Link to='/shop/women'>
-                  <MainButton text='Shop Now' bgcolor='white' color='black' />
+                  <MainButton text='Shop Now' bgcolor='black' color='white' />
                 </Link>
               </div>
             </div>

@@ -211,18 +211,10 @@ export default function Navbar() {
           </div>
         )}
         <section className='hidden lg:flex  items-center lg:ml-24 2xl:ml-44 gap-4 lg:gap-10 bg-white lg:bg-none w-screen py-4 lg:py-0'>
-          <Link to='/shop/men' onClick={handleClick}>
-            Men
-          </Link>
-          <Link to='/shop/women' onClick={handleClick}>
-            Women
-          </Link>
-          <Link to='/shop/acc' onClick={handleClick}>
-            Accessories
-          </Link>
-          <Link to='/shop/shoes' onClick={handleClick}>
-            Shoes
-          </Link>
+          <Link to='/shop/men'>Men</Link>
+          <Link to='/shop/women'>Women</Link>
+          <Link to='/shop/acc'>Accessories</Link>
+          <Link to='/shop/shoes'>Shoes</Link>
         </section>
       </div>
     </div>

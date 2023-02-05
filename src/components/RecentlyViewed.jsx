@@ -28,13 +28,13 @@ export default function RecentlyViewed() {
   return (
     <div className='fixed left-3 bottom-16 lg:top-1/3 lg:left-auto lg:right-5 '>
       <div
-        className='hidden lg:flex absolute left-0 -bottom-8 lg:-top-10 lg:left-auto lg:right-0 w-8 h-8 justify-center items-center border rounded-full bg-slate-100 cursor-pointer'
+        className='hidden lg:flex absolute left-0 -bottom-12 lg:-top-10 lg:left-auto lg:right-0 w-8 h-8 justify-center items-center border rounded-full bg-slate-100 cursor-pointer'
         onClick={handleClick}
       >
         {visible ? <RxCross2 /> : <FaRegEye />}
       </div>
       <div
-        className='lg:hidden absolute left-0 -bottom-8 lg:-top-10 lg:right-0 w-8 h-8 flex justify-center items-center border rounded-full bg-slate-100 cursor-pointer'
+        className='lg:hidden absolute left-0 -bottom-12 lg:-top-10 lg:right-0 w-8 h-8 flex justify-center items-center border rounded-full bg-slate-100 cursor-pointer'
         onClick={handleClick}
       >
         {visible ? <FaRegEye /> : <RxCross2 />}
