@@ -65,7 +65,7 @@ export default function Navbar() {
             onClick={handleClose}
           />
           <p>버튼을 눌러 관리자 권한을 받으시면</p>
-          <p>새 제품 등록, 제품 정보 변경이 가능합니다.</p>
+          <p>새 상품 등록, 상품 정보 변경이 가능합니다.</p>
         </div>
       )}
       <div
@@ -113,7 +113,7 @@ export default function Navbar() {
             {user && user.isAdmin && (
               <Link to='/shop/add'>
                 <button className='hidden lg:block text-sm mx-5 bg-gray-700 text-white px-3 h-7 rounded-lg hover:brightness-200 w-36'>
-                  새 제품 등록하기
+                  새 상품 등록하기
                 </button>
                 <BsFolderPlus className='lg:hidden text-3xl mx-3' />
               </Link>

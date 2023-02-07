@@ -84,7 +84,7 @@ export default function AddProduct() {
               {
                 onSuccess: () => {
                   setIsLoading(false);
-                  alert.success("제품이 등록되었습니다.");
+                  alert.success("상품이 등록되었습니다.");
                   window.location.reload();
                 },
               }
@@ -110,12 +110,12 @@ export default function AddProduct() {
 
   return (
     <>
-      <Banner title='Register a New Product' subTitle='새 제품 등록하기' />
+      <Banner title='Register a New Product' subTitle='새 상품 등록하기' />
       <div className=' flex flex-col lg:flex-row m-10 font-["Raleway"]'>
         <section className='basis-1/2 flex flex-col justify-center items-center px-10'>
           {!file && (
             <div className='h-40  lg:h-full w-full flex justify-center items-center bg-gray-50 text-gray-600 text-center'>
-              사진을 첨부하시면 <br />
+              이미지를 첨부하시면 <br />
               미리보기가 생성됩니다.
             </div>
           )}
@@ -182,7 +182,7 @@ export default function AddProduct() {
               value={product.title ?? ""}
               name='title'
               onChange={handleChange}
-              placeholder='제품명을 입력해주세요.'
+              placeholder='상품명을 입력해주세요.'
               required
             />
             <label htmlFor='price' className={LABEL_PROPERTY}>
@@ -209,7 +209,7 @@ export default function AddProduct() {
               value={product.description ?? ""}
               name='description'
               onChange={handleChange}
-              placeholder='제품설명을 입력해주세요.'
+              placeholder='상품설명을 입력해주세요.'
               required
             />
             <label htmlFor='size' className={LABEL_PROPERTY}>

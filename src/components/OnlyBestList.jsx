@@ -16,16 +16,16 @@ export default function OnlyBestList() {
     }
   );
 
-  let test = [];
+  let bestThings = [];
 
   products &&
     products.map((item) => {
-      test.push(
+      bestThings.push(
         Object.values(item).filter(
           (thing) => thing.tags && thing.tags.best && thing.tags.best === true
         )
       );
-      return test; // 오류 안 생기는지 잘 확인
+      return bestThings; // 오류 안 생기는지 잘 확인
     });
 
   return (
@@ -40,7 +40,7 @@ export default function OnlyBestList() {
           nostrud excepteur voluptate velit ipsum sess enim
         </p>
       </div>
-      <ProductList products={test.flat()} comeFromMain='true' />
+      <ProductList products={bestThings.flat()} comeFromMain='true' />
     </div>
   );
 }

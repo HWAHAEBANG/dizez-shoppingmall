@@ -18,16 +18,16 @@ export default function OnlyNewList() {
     }
   );
 
-  let test = [];
+  let newThings = [];
 
   products &&
     products.map((item) => {
-      test.push(
+      newThings.push(
         Object.values(item).filter(
           (thing) => thing.tags && thing.tags.new && thing.tags.new === true
         )
       );
-      return test;
+      return newThings;
     });
 
   return (
@@ -38,7 +38,7 @@ export default function OnlyNewList() {
         </p>
         <p className='text-5xl'>Featured Products</p>
       </div>
-      <ProductList products={test.flat()} comeFromMain='true' />
+      <ProductList products={newThings.flat()} comeFromMain='true' />
     </div>
   );
 }
