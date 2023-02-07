@@ -18,23 +18,22 @@ REACT와 ReactRouter를 활용한 SPA(Single Page Application)로, 페이지 전
 ## 2.1. 기술 스택
 
 <br/>
-<center><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"> <img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=for-the-badge&logo=TailwindCSS&logoColor=white"> <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white">
-
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+<div align="center">
+  <div><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"> <img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=for-the-badge&logo=TailwindCSS&logoColor=white"> <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white"></div>
+  <div><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
 <img src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=React Router&logoColor=white">
- <img src="https://img.shields.io/badge/React Query-FF4154?style=for-the-badge&logo=React Query&logoColor=white">
+ <img src="https://img.shields.io/badge/React Query-FF4154?style=for-the-badge&logo=React Query&logoColor=white"></div>
+  <div><img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white">
+<img src="https://img.shields.io/badge/Cloudlinary-1261FE?style=for-the-badge&logo=iCloud&logoColor=white"></div>
+  <div><img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=Netlify&logoColor=white"></div>
+</div>
 
-<img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white">
-<img src="https://img.shields.io/badge/Cloudlinary-1261FE?style=for-the-badge&logo=iCloud&logoColor=white">
-
-<img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=Netlify&logoColor=white">
-</center>
 <br/>
 <br/>
 
 ## 2.2. 페이지 구성 (Page Tree)
 
-![대체 텍스트(alt)](public\image\main\pageTree.png "이미지 설명(title)")
+![대체 텍스트(alt)](./public/image/main/pageTree.png "이미지 설명(title)")
 <br/>
 <br/>
 
@@ -44,7 +43,7 @@ REACT와 ReactRouter를 활용한 SPA(Single Page Application)로, 페이지 전
 
 <br/>
 
-## 개발 환경 : yarn bulid.
+## 개발 환경 : yarn bulid
 
 ```
 $ yarn
@@ -327,7 +326,7 @@ useEffect의 두번째 인자 "updater"의 역할이 중요하다.
 <br/>
 <br/>
 
-## 4.8. 로그인
+## 4.8. 로그인 (FireBase API)
 
 로그인은 FireBdase의 Authentication을 통해 구글 계정 로그인을 지원합니다.
 
@@ -369,12 +368,12 @@ async function adminUser(user) {
 ```
 
 데이터베이스는 FireBase의 Realtime Database를 사용합니다.
-관련 코드는
+관련 코드는 상단 코드블럭 참고.
 
 <br/>
 <br/>
 
-## 4.9. 이미지 최적화 Cloudinary API
+## 4.9. 이미지 최적화 & URL 생성 (Cloudinary API)
 
 ```js
 /* uploadImage.jsx */
